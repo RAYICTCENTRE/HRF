@@ -1,8 +1,13 @@
-/* =========================================
-   PREMIUM MODERN CHARITY WEBSITE CSS
-   ========================================= */
+/* =====================================================
+   PREMIUM MODERN CHARITY WEBSITE - COMPLETE CSS
+   ===================================================== */
+
+/* =========================
+   ROOT VARIABLES
+========================= */
 
 :root {
+
   --green: #22c55e;
   --green-dark: #15803d;
   --green-light: #86efac;
@@ -11,30 +16,31 @@
   --red-dark: #b91c1c;
 
   --cream: #f8fafc;
-  --surface: rgba(255,255,255,0.78);
 
   --text: #0f172a;
   --text-light: #475569;
 
-  --border: rgba(255,255,255,0.3);
+  --surface: rgba(255,255,255,0.78);
 
-  --radius: 28px;
+  --border: rgba(255,255,255,0.35);
+
+  --radius: 30px;
   --radius-sm: 18px;
 
   --maxw: 1280px;
 
-  --shadow-sm: 0 6px 18px rgba(15,23,42,0.06);
-  --shadow-md: 0 15px 35px rgba(15,23,42,0.08);
-  --shadow-lg: 0 25px 60px rgba(15,23,42,0.12);
+  --shadow-sm: 0 8px 20px rgba(15,23,42,0.05);
+  --shadow-md: 0 20px 40px rgba(15,23,42,0.08);
+  --shadow-lg: 0 35px 70px rgba(15,23,42,0.12);
 
-  --transition: all .35s cubic-bezier(.17,.67,.35,1);
+  --transition: all .4s cubic-bezier(.17,.67,.35,1);
 
   --blur: blur(18px);
 }
 
-/* =========================================
-   GLOBAL
-   ========================================= */
+/* =========================
+   RESET
+========================= */
 
 * {
   margin: 0;
@@ -52,6 +58,7 @@ html {
 }
 
 body {
+
   font-family: 'Inter', system-ui, sans-serif;
 
   background:
@@ -63,9 +70,11 @@ body {
       rgba(239,68,68,0.08),
       transparent 30%),
 
-    linear-gradient(to bottom,
+    linear-gradient(
+      to bottom,
       #f8fafc,
-      #eef2f7);
+      #eef2f7
+    );
 
   color: var(--text);
 
@@ -85,8 +94,11 @@ a {
 }
 
 .wrap {
+  width: 100%;
   max-width: var(--maxw);
+
   margin: auto;
+
   padding: 0 28px;
 }
 
@@ -94,9 +106,9 @@ section {
   margin: 6rem 0;
 }
 
-/* =========================================
+/* =========================
    TYPOGRAPHY
-   ========================================= */
+========================= */
 
 h1, h2, h3, h4 {
   font-weight: 800;
@@ -116,41 +128,46 @@ h1 {
 
   -webkit-background-clip: text;
   background-clip: text;
+
   color: transparent;
 
   margin-bottom: 1rem;
 }
 
 h2 {
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  margin-bottom: 1rem;
 }
 
 h3 {
-  font-size: clamp(1.4rem, 3vw, 2rem);
-  margin-bottom: 1.5rem;
+  font-size: clamp(1.4rem, 4vw, 2rem);
+
   color: var(--green-dark);
+
+  margin-bottom: 1rem;
 }
 
 p {
   color: var(--text-light);
 }
 
-/* =========================================
-   GLASS CARD STYLE
-   ========================================= */
+/* =========================
+   GLASS STYLE
+========================= */
 
 .hero,
 .impact-card,
-.program-card,
+.program-item,
 .leader-card,
 .contact-form-container,
 .info-card,
-.board-list,
 .events-list,
+.board-list,
 .donate-form-panel,
 .mission-vision .card,
 details,
 .cta-banner {
+
   background: var(--surface);
 
   backdrop-filter: var(--blur);
@@ -161,11 +178,12 @@ details,
   box-shadow: var(--shadow-md);
 }
 
-/* =========================================
+/* =========================
    HEADER
-   ========================================= */
+========================= */
 
 header {
+
   position: sticky;
   top: 15px;
 
@@ -205,6 +223,7 @@ header {
 }
 
 .logo div {
+
   width: 52px;
   height: 52px;
 
@@ -213,8 +232,6 @@ header {
 
   border-radius: 16px;
 
-  color: white;
-
   background:
     linear-gradient(
       135deg,
@@ -222,35 +239,41 @@ header {
       var(--green-dark)
     );
 
+  color: white;
+
   box-shadow:
-    0 10px 25px rgba(34,197,94,0.25);
+    0 15px 30px rgba(34,197,94,0.25);
 }
 
 nav {
   display: flex;
-  gap: .6rem;
   align-items: center;
+  gap: .6rem;
 }
 
 nav a {
+
   padding: .8rem 1.2rem;
 
   border-radius: 999px;
 
-  color: var(--green-dark);
-
   font-weight: 600;
+
+  color: var(--green-dark);
 }
 
 nav a:hover,
 nav a.active {
+
   background: var(--green);
+
   color: white;
 
   transform: translateY(-2px);
 }
 
 .cta {
+
   background:
     linear-gradient(
       135deg,
@@ -261,10 +284,11 @@ nav a.active {
   color: white !important;
 
   box-shadow:
-    0 12px 25px rgba(239,68,68,0.22);
+    0 15px 30px rgba(239,68,68,0.22);
 }
 
 .mobile-menu-btn {
+
   display: none;
 
   border: none;
@@ -277,16 +301,15 @@ nav a.active {
 
   border-radius: 14px;
 
-  font-size: 1.2rem;
-
   cursor: pointer;
 }
 
-/* =========================================
+/* =========================
    HERO
-   ========================================= */
+========================= */
 
 .hero {
+
   display: grid;
   grid-template-columns: 1fr 1fr;
 
@@ -304,6 +327,7 @@ nav a.active {
 }
 
 .hero::before {
+
   content: "";
 
   position: absolute;
@@ -325,6 +349,7 @@ nav a.active {
 }
 
 .hero::after {
+
   content: "";
 
   position: absolute;
@@ -346,7 +371,12 @@ nav a.active {
 }
 
 .badge {
+
   display: inline-block;
+
+  padding: .45rem 1rem;
+
+  border-radius: 999px;
 
   background:
     linear-gradient(
@@ -357,44 +387,38 @@ nav a.active {
 
   color: white;
 
-  padding: .45rem 1rem;
-
-  border-radius: 999px;
-
   font-size: .8rem;
-
   font-weight: 700;
 
-  margin-bottom: 1.3rem;
-}
-
-.hero p {
-  font-size: 1.05rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .actions {
+
   display: flex;
   gap: 1rem;
+
   flex-wrap: wrap;
 
-  margin-bottom: 2rem;
+  margin: 2rem 0;
 }
 
 .primary,
 .secondary {
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
   padding: 1rem 2rem;
 
   border-radius: 999px;
 
   font-weight: 700;
-
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .primary {
+
   background:
     linear-gradient(
       135deg,
@@ -409,28 +433,55 @@ nav a.active {
 }
 
 .primary:hover {
+
   transform:
     translateY(-4px)
-    scale(1.02);
-
-  box-shadow:
-    0 20px 40px rgba(34,197,94,0.35);
+    scale(1.03);
 }
 
 .secondary {
+
   border: 2px solid var(--green);
 
   color: var(--green-dark);
 }
 
 .secondary:hover {
-  background: var(--green);
-  color: white;
 
-  transform: translateY(-4px);
+  background: var(--green);
+
+  color: white;
 }
 
+.hero-image img {
+
+  width: 100%;
+  height: 480px;
+
+  object-fit: cover;
+
+  border-radius: 28px;
+
+  transition:
+    transform .8s ease,
+    filter .5s ease;
+
+  box-shadow: var(--shadow-lg);
+}
+
+.hero-image img:hover {
+
+  transform: scale(1.05);
+
+  filter: brightness(1.05);
+}
+
+/* =========================
+   STATS
+========================= */
+
 .stats {
+
   display: flex;
   gap: 2rem;
 
@@ -443,6 +494,7 @@ nav a.active {
 }
 
 .stats span {
+
   display: block;
 
   font-size: 2rem;
@@ -450,36 +502,89 @@ nav a.active {
   font-weight: 800;
 
   color: var(--red);
-
-  margin-bottom: .2rem;
 }
 
-.hero-image img {
-  height: 480px;
+/* =========================
+   PAGE HEADER
+========================= */
+
+.page-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.page-header p {
+
+  max-width: 760px;
+
+  margin: auto;
+}
+
+/* =========================
+   PROGRAMS GRID
+========================= */
+
+.programs-grid {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(320px, 1fr));
+
+  gap: 2rem;
+}
+
+.program-item {
+
+  border-radius: var(--radius);
+
+  overflow: hidden;
+
+  transition: var(--transition);
+}
+
+.program-item:hover {
+
+  transform:
+    translateY(-10px)
+    scale(1.02);
+
+  box-shadow:
+    0 35px 70px rgba(15,23,42,0.14);
+}
+
+.program-item img {
+
   width: 100%;
+  height: 250px;
 
   object-fit: cover;
 
-  border-radius: 28px;
-
   transition:
-    transform .7s ease,
+    transform .8s ease,
     filter .5s ease;
-
-  box-shadow: var(--shadow-lg);
 }
 
-.hero-image img:hover {
-  transform: scale(1.05);
-  filter: brightness(1.05);
+.program-item:hover img {
+
+  transform: scale(1.08);
 }
 
-/* =========================================
-   CARDS
-   ========================================= */
+.program-info {
+  padding: 2rem;
+}
+
+.program-info p {
+  margin-bottom: 1.5rem;
+}
+
+/* =========================
+   IMPACT CARDS
+========================= */
 
 .impact-grid,
 .values-grid {
+
   display: grid;
 
   grid-template-columns:
@@ -488,29 +593,26 @@ nav a.active {
   gap: 2rem;
 }
 
-.impact-card,
-.leader-card,
-.mission-vision .card {
+.impact-card {
+
   padding: 2rem;
 
   border-radius: var(--radius);
 
+  text-align: center;
+
   transition: var(--transition);
 }
 
-.impact-card:hover,
-.program-card:hover,
-.leader-card:hover,
-.mission-vision .card:hover {
+.impact-card:hover {
+
   transform:
     translateY(-10px)
     scale(1.02);
-
-  box-shadow:
-    0 30px 60px rgba(0,0,0,0.12);
 }
 
 .impact-icon {
+
   font-size: 3rem;
 
   margin-bottom: 1rem;
@@ -528,20 +630,23 @@ nav a.active {
   color: transparent;
 }
 
-/* =========================================
+/* =========================
    EVENTS
-   ========================================= */
+========================= */
 
 .events-list {
+
   border-radius: var(--radius);
+
   overflow: hidden;
 }
 
 .event-item {
-  display: flex;
-  gap: 1.5rem;
 
+  display: flex;
   align-items: center;
+
+  gap: 1.5rem;
 
   padding: 1.5rem;
 
@@ -552,23 +657,25 @@ nav a.active {
 }
 
 .event-item:hover {
+
   background: rgba(255,255,255,0.45);
 
   transform: translateX(6px);
 }
 
 .event-date {
-  min-width: 75px;
 
-  text-align: center;
+  min-width: 75px;
 
   padding: 1rem;
 
   border-radius: 18px;
 
-  color: white;
+  text-align: center;
 
   font-weight: 800;
+
+  color: white;
 
   background:
     linear-gradient(
@@ -578,64 +685,41 @@ nav a.active {
     );
 }
 
-/* =========================================
-   PROGRAMS
-   ========================================= */
-
-.programs-detailed {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-.program-card {
-  display: grid;
-  grid-template-columns: 320px 1fr;
-
-  border-radius: var(--radius);
-
-  overflow: hidden;
-
-  transition: var(--transition);
-}
-
-.program-card img {
-  width: 100%;
-  height: 100%;
-
-  object-fit: cover;
-
-  transition:
-    transform .7s ease,
-    filter .5s ease;
-}
-
-.program-card:hover img {
-  transform: scale(1.08);
-}
-
-.program-content {
-  padding: 2rem;
-}
-
-/* =========================================
+/* =========================
    LEADERS
-   ========================================= */
+========================= */
 
 .leaders-grid {
+
   display: flex;
   flex-wrap: wrap;
+
   gap: 2rem;
 }
 
 .leader-card {
+
   flex: 1;
   min-width: 240px;
 
+  padding: 2rem;
+
+  border-radius: var(--radius);
+
   text-align: center;
+
+  transition: var(--transition);
+}
+
+.leader-card:hover {
+
+  transform:
+    translateY(-10px)
+    scale(1.02);
 }
 
 .leader-card img {
+
   width: 130px;
   height: 130px;
 
@@ -648,14 +732,16 @@ nav a.active {
   border: 4px solid var(--green);
 }
 
-/* =========================================
+/* =========================
    FORMS
-   ========================================= */
+========================= */
 
 .contact-page-grid,
 .donate-grid,
 .mission-vision {
+
   display: grid;
+
   grid-template-columns: 1fr 1fr;
 
   gap: 2rem;
@@ -664,24 +750,27 @@ nav a.active {
 .contact-form-container,
 .info-card,
 .donate-form-panel {
+
   padding: 2rem;
+
   border-radius: var(--radius);
 }
 
 form input,
 form textarea,
 form select {
+
   width: 100%;
 
   padding: 1rem 1.1rem;
 
   margin-bottom: 1rem;
 
-  border: 1px solid rgba(0,0,0,0.08);
-
   border-radius: 16px;
 
-  background: rgba(255,255,255,0.8);
+  border: 1px solid rgba(0,0,0,0.08);
+
+  background: rgba(255,255,255,0.82);
 
   font-size: 1rem;
 
@@ -691,6 +780,7 @@ form select {
 form input:focus,
 form textarea:focus,
 form select:focus {
+
   outline: none;
 
   border-color: var(--green);
@@ -700,11 +790,12 @@ form select:focus {
 }
 
 form button {
+
   width: 100%;
 
-  border: none;
-
   padding: 1rem;
+
+  border: none;
 
   border-radius: 999px;
 
@@ -725,55 +816,26 @@ form button {
 }
 
 form button:hover {
+
   transform: translateY(-3px);
-
-  box-shadow:
-    0 15px 30px rgba(239,68,68,0.25);
 }
 
-/* =========================================
-   FAQ
-   ========================================= */
-
-details {
-  padding: 1.2rem 1.5rem;
-
-  border-radius: var(--radius-sm);
-
-  margin-bottom: 1rem;
-
-  transition: var(--transition);
-}
-
-details:hover {
-  transform: translateY(-2px);
-}
-
-summary {
-  cursor: pointer;
-
-  font-weight: 700;
-
-  color: var(--green-dark);
-}
-
-details p {
-  margin-top: 1rem;
-}
-
-/* =========================================
-   DONATE
-   ========================================= */
+/* =========================
+   DONATE BUTTONS
+========================= */
 
 .donation-buttons {
+
   display: flex;
   gap: .8rem;
+
   flex-wrap: wrap;
 
   margin: 1.5rem 0;
 }
 
 .donate-amt {
+
   border: none;
 
   padding: .9rem 1.5rem;
@@ -790,18 +852,47 @@ details p {
 }
 
 .donate-amt:hover {
+
   background: var(--green);
 
   color: white;
+}
+
+/* =========================
+   FAQ
+========================= */
+
+details {
+
+  padding: 1.2rem 1.5rem;
+
+  border-radius: var(--radius-sm);
+
+  margin-bottom: 1rem;
+
+  transition: var(--transition);
+}
+
+details:hover {
 
   transform: translateY(-3px);
 }
 
-/* =========================================
+summary {
+
+  cursor: pointer;
+
+  font-weight: 700;
+
+  color: var(--green-dark);
+}
+
+/* =========================
    CTA BANNER
-   ========================================= */
+========================= */
 
 .cta-banner {
+
   padding: 4rem;
 
   border-radius: var(--radius);
@@ -822,30 +913,15 @@ details p {
   color: white;
 }
 
-/* =========================================
-   PAGE HEADER
-   ========================================= */
-
-.page-header {
-  text-align: center;
-  margin: 4rem 0 2rem;
-}
-
-.page-header p {
-  max-width: 700px;
-  margin: auto;
-}
-
-/* =========================================
+/* =========================
    FOOTER
-   ========================================= */
+========================= */
 
 footer {
+
   margin-top: 6rem;
 
   padding: 4rem 2rem 2rem;
-
-  color: white;
 
   background:
     linear-gradient(
@@ -854,10 +930,13 @@ footer {
       #14532d
     );
 
+  color: white;
+
   border-radius: 40px 40px 0 0;
 }
 
 .footer-grid {
+
   display: grid;
 
   grid-template-columns:
@@ -869,6 +948,7 @@ footer {
 }
 
 .footer-bottom {
+
   text-align: center;
 
   padding-top: 2rem;
@@ -877,19 +957,21 @@ footer {
     1px solid rgba(255,255,255,0.15);
 }
 
-/* =========================================
+/* =========================
    ANIMATIONS
-   ========================================= */
+========================= */
 
 .hero,
+.program-item,
 .impact-card,
-.program-card,
 .leader-card,
 .cta-banner {
+
   animation: fadeUp .8s ease both;
 }
 
 @keyframes fadeUp {
+
   from {
     opacity: 0;
     transform: translateY(40px);
@@ -901,21 +983,22 @@ footer {
   }
 }
 
-/* =========================================
-   MOBILE
-   ========================================= */
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
 
 @media (max-width: 950px) {
 
   .hero,
   .contact-page-grid,
   .donate-grid,
-  .mission-vision,
-  .program-card {
+  .mission-vision {
+
     grid-template-columns: 1fr;
   }
 
   .hero {
+
     padding: 2rem;
     gap: 2rem;
   }
@@ -925,6 +1008,7 @@ footer {
   }
 
   nav {
+
     display: none;
 
     width: 100%;
@@ -942,20 +1026,49 @@ footer {
     display: block;
   }
 
+  .programs-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
   .stats {
     flex-wrap: wrap;
   }
+}
 
-  .program-card img {
-    height: 260px;
+@media (max-width: 700px) {
+
+  .programs-grid,
+  .impact-grid,
+  .values-grid {
+
+    grid-template-columns: 1fr;
+  }
+
+  .event-item {
+
+    flex-direction: column;
+
+    text-align: center;
   }
 
   .footer-grid {
     grid-template-columns: 1fr;
   }
+
+  .hero-image img {
+    height: 260px;
+  }
+
+  .program-item img {
+    height: 220px;
+  }
+
+  .leader-card {
+    min-width: 100%;
+  }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 500px) {
 
   .wrap {
     padding: 0 18px;
@@ -974,11 +1087,6 @@ footer {
     width: 100%;
   }
 
-  .event-item {
-    flex-direction: column;
-    text-align: center;
-  }
-
   .stats {
     justify-content: center;
     text-align: center;
@@ -990,5 +1098,15 @@ footer {
 
   .cta-banner {
     padding: 2rem;
+  }
+
+  .program-info,
+  .impact-card,
+  .leader-card,
+  .contact-form-container,
+  .info-card,
+  .donate-form-panel {
+
+    padding: 1.5rem;
   }
 }
