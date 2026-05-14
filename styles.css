@@ -361,6 +361,34 @@ nav a:hover, nav a.active {
   font-size: 1.1rem;
 }
 
+/* Programs */
+    .programs {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
+      gap: 20px;
+    }
+    .program {
+      background: white;
+      border-left: 5px solid var(--green);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    .program img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .program h4 {
+      margin: 12px;
+      color: var(--green-dark);
+    }
+    .program p {
+      margin: 0 12px 14px 12px;
+      color: var(--muted);
+    }
+
+    
 /* Governance & Leadership */
 .leaders-grid {
   display: flex;
@@ -693,7 +721,7 @@ footer {
     height: 280px;
   }
   
-  .contact-page-grid, .donate-grid, .mission-vision {
+  .contact-page-grid, .donate-grid, .program-card, .mission-vision {
     grid-template-columns: 1fr;
   }
   
@@ -722,6 +750,14 @@ footer {
   
   .stats span {
     font-size: 1.5rem;
+  }
+  
+  .program-card {
+    grid-template-columns: 1fr;
+  }
+  
+  .program-card img {
+    height: 200px;
   }
   
   .leaders-grid {
