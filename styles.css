@@ -361,51 +361,6 @@ nav a:hover, nav a.active {
   font-size: 1.1rem;
 }
 
-/* Programs Detail Page */
-.programs-detailed {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  margin: 3rem 0;
-}
-
-.program-card {
-  display: grid;
-  grid-template-columns: 280px 1fr;
-  background: var(--card);
-  border-radius: var(--radius);
-  overflow: hidden;
-  box-shadow: var(--shadow-md);
-  transition: var(--transition);
-}
-
-.program-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
-}
-
-.program-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: var(--transition);
-}
-
-.program-card:hover img {
-  transform: scale(1.05);
-}
-
-.program-content {
-  padding: 2rem;
-}
-
-.program-content h3 {
-  border-left: none;
-  padding-left: 0;
-  margin-bottom: 1rem;
-  font-size: 1.6rem;
-}
-
 /* Governance & Leadership */
 .leaders-grid {
   display: flex;
@@ -738,7 +693,7 @@ footer {
     height: 280px;
   }
   
-  .contact-page-grid, .donate-grid, .program-card, .mission-vision {
+  .contact-page-grid, .donate-grid, .mission-vision {
     grid-template-columns: 1fr;
   }
   
@@ -767,14 +722,6 @@ footer {
   
   .stats span {
     font-size: 1.5rem;
-  }
-  
-  .program-card {
-    grid-template-columns: 1fr;
-  }
-  
-  .program-card img {
-    height: 200px;
   }
   
   .leaders-grid {
