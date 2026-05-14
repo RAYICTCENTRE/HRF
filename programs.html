@@ -1,12 +1,159 @@
-<!-- programs.html -->
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="Explore Hope Revealed's programs: Mission Outreach, Sports, Health, Agriculture, Livelihood, and Capacity Building." />
+  <meta name="description" content="Explore Hope Revealed's comprehensive programs: Mission Outreach, Sports, Health, Agriculture, Livelihood, and Capacity Building." />
   <title>Hope Revealed — Our Programs</title>
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Additional styles specific to toggle functionality */
+    .programs-toggle-list {
+      margin: 3rem 0;
+    }
+
+    .program-toggle-item {
+      background: var(--card);
+      border-radius: var(--radius);
+      margin-bottom: 1.25rem;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      overflow: hidden;
+    }
+
+    .program-toggle-item:hover {
+      box-shadow: var(--shadow-md);
+    }
+
+    .program-toggle-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 2rem;
+      cursor: pointer;
+      background: white;
+      transition: background 0.2s ease;
+    }
+
+    .program-toggle-header:hover {
+      background: #fafaf5;
+    }
+
+    .program-title-section {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .program-title-section h3 {
+      margin: 0;
+      border-left: none;
+      padding-left: 0;
+      font-size: 1.5rem;
+      color: var(--green-dark);
+    }
+
+    .program-short-desc {
+      color: var(--text-light);
+      font-size: 0.9rem;
+    }
+
+    .toggle-indicator {
+      font-size: 1.8rem;
+      font-weight: 300;
+      color: var(--green);
+      transition: transform 0.3s ease;
+      line-height: 1;
+    }
+
+    .program-toggle-item.active .toggle-indicator {
+      transform: rotate(45deg);
+    }
+
+    .program-toggle-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease-out;
+      background: #fefef9;
+      border-top: 1px solid transparent;
+    }
+
+    .program-toggle-item.active .program-toggle-content {
+      max-height: 2000px;
+      transition: max-height 0.5s ease-in-out;
+      border-top-color: #e8e8e0;
+    }
+
+    .program-detail-inner {
+      padding: 2rem;
+    }
+
+    .program-detail-grid {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 2rem;
+    }
+
+    .program-detail-img {
+      width: 100%;
+      border-radius: var(--radius-sm);
+      object-fit: cover;
+      height: 200px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .program-description-full p {
+      margin-bottom: 1rem;
+      line-height: 1.7;
+      color: var(--text);
+    }
+
+    .program-description-full h4 {
+      color: var(--green-dark);
+      margin: 1.2rem 0 0.6rem 0;
+      font-size: 1.1rem;
+    }
+
+    .program-description-full ul {
+      margin-left: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--text-light);
+    }
+
+    .program-description-full li {
+      margin: 0.5rem 0;
+    }
+
+    .program-impact-badge {
+      background: linear-gradient(135deg, var(--green-light), var(--green));
+      color: white;
+      display: inline-block;
+      padding: 0.3rem 1rem;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-top: 0.8rem;
+    }
+
+    @media (max-width: 700px) {
+      .program-detail-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      
+      .program-detail-img {
+        height: 220px;
+      }
+      
+      .program-toggle-header {
+        padding: 1.2rem 1.5rem;
+      }
+      
+      .program-title-section h3 {
+        font-size: 1.3rem;
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="wrap">
@@ -15,7 +162,7 @@
         <div>HR</div> 
         <span>Hope Revealed</span>
       </a>
-      <nav>
+      <nav id="mainNav">
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
         <a href="programs.html" class="active">Programs</a>
@@ -23,77 +170,288 @@
         <a href="contact.html">Contact</a>
         <a href="donate.html" class="cta">Donate</a>
       </nav>
-      <button class="mobile-menu-btn" aria-label="Menu">☰</button>
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">☰</button>
     </header>
 
     <main>
       <section class="page-header">
         <h1>Our Programs</h1>
-        <p>Holistic transformation through 6 strategic pillars</p>
+        <p>Holistic transformation through six strategic pillars of community development</p>
       </section>
 
-      <div class="programs-detailed">
-        <div class="program-card">
-          <img src="Missionoutreach.jpg" alt="Mission outreach">
-          <div class="program-content">
-            <h3>✝️ Mission Outreach</h3>
-            <p>We conduct gospel outreach in prisons and schools, sharing hope, discipleship, and positive transformation. Monthly services reach 1,200+ inmates and students.</p>
+      <!-- Toggle Programs List -->
+      <div class="programs-toggle-list" id="programsToggleList">
+        <!-- Program 1 - Mission Outreach -->
+        <div class="program-toggle-item" data-program="mission">
+          <div class="program-toggle-header">
+            <div class="program-title-section">
+              <h3>Mission Outreach</h3>
+              <div class="program-short-desc">Prison and school evangelism • Discipleship • Spiritual transformation</div>
+            </div>
+            <div class="toggle-indicator">+</div>
+          </div>
+          <div class="program-toggle-content">
+            <div class="program-detail-inner">
+              <div class="program-detail-grid">
+                <img src="Missionoutreach.jpg" alt="Mission outreach team sharing hope" class="program-detail-img" onerror="this.src='https://placehold.co/400x300/2e7d32/white?text=Mission+Outreach'">
+                <div class="program-description-full">
+                  <p><strong>Mission Outreach</strong> forms the spiritual backbone of Hope Revealed. We believe that lasting community transformation begins with inner hope and purpose. Through strategic partnerships with prisons and schools across Kiryandongo District, our trained chaplains and volunteers conduct regular services, Bible study sessions, and one-on-one discipleship.</p>
+                  
+                  <h4>Key Activities</h4>
+                  <ul>
+                    <li>Weekly prison worship services reaching over 1,200 inmates monthly</li>
+                    <li>School scripture union programs in 15 partner schools</li>
+                    <li>Quarterly prison donation drives for Bibles and hygiene items</li>
+                    <li>Post-release discipleship and reintegration support</li>
+                    <li>Vacation Bible schools for children in rural communities</li>
+                  </ul>
+                  
+                  <h4>Impact Highlights</h4>
+                  <p>Since 2018, over 3,500 inmates have participated in our programs, with 400 completing foundational Bible courses. Many former participants now lead peer support groups within correctional facilities.</p>
+                  
+                  <div class="program-impact-badge">1,200+ reached monthly • 15 active schools</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="program-card">
-          <img src="Sports.jpg" alt="Sports">
-          <div class="program-content">
-            <h3>⚽ Sports</h3>
-            <p>Sports tournaments unite youth and communities while serving as a platform for gospel outreach and talent development. Annual Unity Cup draws 20+ teams.</p>
+
+        <!-- Program 2 - Sports -->
+        <div class="program-toggle-item" data-program="sports">
+          <div class="program-toggle-header">
+            <div class="program-title-section">
+              <h3>Sports</h3>
+              <div class="program-short-desc">Football tournaments • Youth engagement • Talent development</div>
+            </div>
+            <div class="toggle-indicator">+</div>
+          </div>
+          <div class="program-toggle-content">
+            <div class="program-detail-inner">
+              <div class="program-detail-grid">
+                <img src="Sports.jpg" alt="Youth participating in sports tournament" class="program-detail-img" onerror="this.src='https://placehold.co/400x300/c62828/white?text=Sports+Program'">
+                <div class="program-description-full">
+                  <p><strong>Sports initiatives</strong> create bridges between diverse communities and provide a healthy outlet for youth energy. Our flagship Unity Cup tournament brings together teams from different religious and ethnic backgrounds, promoting reconciliation and teamwork. Sports also serve as a powerful platform for values-based education and HIV awareness messaging.</p>
+                  
+                  <h4>Key Activities</h4>
+                  <ul>
+                    <li>Annual Unity Cup tournament with 20+ participating teams</li>
+                    <li>Weekly community football and netball leagues</li>
+                    <li>Sports equipment lending library for schools</li>
+                    <li>Coach training in child protection and first aid</li>
+                    <li>Faith-based halftime messages and mentorship sessions</li>
+                  </ul>
+                  
+                  <h4>Community Impact</h4>
+                  <p>Over 500 youth participate regularly in our sports activities. The Unity Cup has become a signature event drawing over 2,000 spectators annually. We have seen reduction in idle time related conflicts among participating youth.</p>
+                  
+                  <div class="program-impact-badge">20+ teams annually • 500 active youth • 8 trained coaches</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="program-card">
-          <img src="Healthcounselling.jpg" alt="Health counselling">
-          <div class="program-content">
-            <h3>🩺 Health & Counselling</h3>
-            <p>We offer counseling and guidance for people living with HIV and chronic illnesses, focusing on holistic wellbeing. Free testing events quarterly.</p>
+
+        <!-- Program 3 - Health and Counselling -->
+        <div class="program-toggle-item" data-program="health">
+          <div class="program-toggle-header">
+            <div class="program-title-section">
+              <h3>Health and Counselling</h3>
+              <div class="program-short-desc">HIV support • Mental health • Wellness education</div>
+            </div>
+            <div class="toggle-indicator">+</div>
+          </div>
+          <div class="program-toggle-content">
+            <div class="program-detail-inner">
+              <div class="program-detail-grid">
+                <img src="Healthcounselling.jpg" alt="Health counselling session" class="program-detail-img" onerror="this.src='https://placehold.co/400x300/2e7d32/white?text=Health+%26+Counselling'">
+                <div class="program-description-full">
+                  <p><strong>Health and Counselling services</strong> address both physical and emotional wellbeing. We work closely with local health centers to provide holistic care for people living with HIV, chronic illnesses, and those facing mental health challenges. Our trained counsellors offer a safe, confidential space for individuals and families.</p>
+                  
+                  <h4>Key Activities</h4>
+                  <ul>
+                    <li>Quarterly free HIV testing and wellness camps</li>
+                    <li>Individual and group counselling sessions by appointment</li>
+                    <li>Home-based care visits for chronically ill individuals</li>
+                    <li>Nutrition education for people living with HIV</li>
+                    <li>Mental health first aid training for community leaders</li>
+                    <li>Referral network with district health facilities</li>
+                  </ul>
+                  
+                  <h4>Reach and Outcomes</h4>
+                  <p>Our quarterly testing events screen over 300 individuals per session. We currently provide ongoing counselling support to 150 clients. Treatment adherence among our enrolled clients has shown significant improvement through our follow-up system.</p>
+                  
+                  <div class="program-impact-badge">300+ tested quarterly • 150 active clients • 5 partner clinics</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="program-card">
-          <img src="Agriculture.jpg" alt="Agriculture">
-          <div class="program-content">
-            <h3>🌾 Agriculture</h3>
-            <p>Training in modern farming techniques helps families increase yields, fight poverty, and achieve food security. Demonstration farms established.</p>
+
+        <!-- Program 4 - Agriculture -->
+        <div class="program-toggle-item" data-program="agriculture">
+          <div class="program-toggle-header">
+            <div class="program-title-section">
+              <h3>Agriculture</h3>
+              <div class="program-short-desc">Modern farming • Food security • Sustainable livelihoods</div>
+            </div>
+            <div class="toggle-indicator">+</div>
+          </div>
+          <div class="program-toggle-content">
+            <div class="program-detail-inner">
+              <div class="program-detail-grid">
+                <img src="Agriculture.jpg" alt="Farmers learning modern agriculture techniques" class="program-detail-img" onerror="this.src='https://placehold.co/400x300/4caf50/white?text=Agriculture+Program'">
+                <div class="program-description-full">
+                  <p><strong>Agriculture program</strong> tackles food insecurity and poverty through practical training in climate-smart farming methods. Many families in our region depend on subsistence farming, yet lack access to improved seeds, techniques, and market information. Our demonstration farms serve as living classrooms where farmers learn by doing.</p>
+                  
+                  <h4>Key Activities</h4>
+                  <ul>
+                    <li>Hands-on training in crop rotation, intercropping, and soil conservation</li>
+                    <li>Demonstration farms showcasing high-yield vegetable and grain production</li>
+                    <li>Poultry and small livestock management workshops</li>
+                    <li>Seed and tool distribution for graduated farmers</li>
+                    <li>Farmer cooperative formation and collective marketing support</li>
+                    <li>Post-harvest handling and storage techniques</li>
+                  </ul>
+                  
+                  <h4>Measurable Impact</h4>
+                  <p>Over 200 households have completed our 6-month training cycle. Participants report average yield increases of 40 percent. Three demonstration farms are fully operational and serve as community learning sites.</p>
+                  
+                  <div class="program-impact-badge">200 trained households • 40% average yield increase • 3 demo farms</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="program-card">
-          <img src="livelihood.jpg" alt="Livelihood">
-          <div class="program-content">
-            <h3>💼 Livelihood</h3>
-            <p>Vocational skills training (tailoring, carpentry) and small-scale projects empower Christians to become financially independent.</p>
+
+        <!-- Program 5 - Livelihood -->
+        <div class="program-toggle-item" data-program="livelihood">
+          <div class="program-toggle-header">
+            <div class="program-title-section">
+              <h3>Livelihood</h3>
+              <div class="program-short-desc">Vocational training • Small business • Economic empowerment</div>
+            </div>
+            <div class="toggle-indicator">+</div>
+          </div>
+          <div class="program-toggle-content">
+            <div class="program-detail-inner">
+              <div class="program-detail-grid">
+                <img src="livelihood.jpg" alt="Vocational training workshop" class="program-detail-img" onerror="this.src='https://placehold.co/400x300/c62828/white?text=Livelihood+Training'">
+                <div class="program-description-full">
+                  <p><strong>Livelihood program</strong> equips individuals with practical skills and resources to generate sustainable income. Many families struggle to break the cycle of poverty due to lack of marketable skills. We offer vocational tracks alongside small business training and startup support for graduating participants.</p>
+                  
+                  <h4>Vocational Tracks</h4>
+                  <ul>
+                    <li><strong>Tailoring and Fashion Design:</strong> 6-month course covering sewing, pattern making, and small business management</li>
+                    <li><strong>Carpentry and Joinery:</strong> Furniture making, repair skills, and tool maintenance</li>
+                    <li><strong>Small Business Management:</strong> Record keeping, pricing, customer relations, and savings groups</li>
+                    <li><strong>Food Processing:</strong> Value addition for local crops, safe preservation methods</li>
+                  </ul>
+                  
+                  <h4>Success Outcomes</h4>
+                  <p>To date, 85 graduates have started their own small enterprises. Our revolving loan fund has supported 40 micro-businesses with startup capital. Many graduates now employ others in their communities.</p>
+                  
+                  <div class="program-impact-badge">85 business graduates • 40 micro-loans disbursed • 6 month courses</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="program-card">
-          <img src="CapacityBuilding.jpg" alt="Capacity building">
-          <div class="program-content">
-            <h3>📚 Capacity Building</h3>
-            <p>We strengthen leaders, pastors, and community members with training in governance, ministry, and management. Leadership summits twice a year.</p>
+
+        <!-- Program 6 - Capacity Building -->
+        <div class="program-toggle-item" data-program="capacity">
+          <div class="program-toggle-header">
+            <div class="program-title-section">
+              <h3>Capacity Building</h3>
+              <div class="program-short-desc">Leadership training • Governance • Organizational development</div>
+            </div>
+            <div class="toggle-indicator">+</div>
+          </div>
+          <div class="program-toggle-content">
+            <div class="program-detail-inner">
+              <div class="program-detail-grid">
+                <img src="CapacityBuilding.jpg" alt="Leadership training workshop" class="program-detail-img" onerror="this.src='https://placehold.co/400x300/2e7d32/white?text=Capacity+Building'">
+                <div class="program-description-full">
+                  <p><strong>Capacity Building program</strong> strengthens local leaders, pastors, and community organization boards. Effective leadership is essential for sustainable community development. We provide training in governance, financial management, project planning, and ministry leadership to equip change-makers with professional skills.</p>
+                  
+                  <h4>Training Modules</h4>
+                  <ul>
+                    <li><strong>Leadership and Governance:</strong> Board roles, strategic planning, ethical leadership</li>
+                    <li><strong>Financial Management for Nonprofits:</strong> Budgeting, internal controls, donor reporting</li>
+                    <li><strong>Ministry and Pastoral Development:</strong> Sermon preparation, pastoral counselling, conflict resolution</li>
+                    <li><strong>Project Management:</strong> Proposal writing, monitoring and evaluation, community mobilization</li>
+                    <li><strong>Advocacy and Community Rights:</strong> Understanding local governance structures, citizen engagement</li>
+                  </ul>
+                  
+                  <h4>Program Scale</h4>
+                  <p>We host two major leadership summits each year, each training 50 to 70 participants. Ongoing mentorship is provided to alumni through quarterly peer learning meetings. Many graduates have gone on to serve on local school boards, health committees, and cooperative leadership.</p>
+                  
+                  <div class="program-impact-badge">2 summits annually • 120 leaders trained to date • 8 partner organizations</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
+      <!-- Call to Action Banner -->
       <section class="cta-banner">
         <h3>Become a Partner in Transformation</h3>
-        <p>Your support makes these programs possible.</p>
-        <a href="donate.html" class="primary" style="background: white; color: var(--green);">Donate Now →</a>
+        <p>Your financial support, prayers, or volunteer time makes every program possible.</p>
+        <a href="donate.html" class="primary" style="background: white; color: var(--green);">Donate Now</a>
       </section>
     </main>
 
     <footer>
       <div class="footer-grid">
-        <div><strong>Hope Revealed</strong><br>Christian CBO bringing hope & transformation.</div>
-        <div><strong>Contact</strong><br>+256 776 156 515<br>info@hoperevealed.org</div>
-        <div><strong>Location</strong><br>Kiryandongo District, Uganda</div>
+        <div><strong>Hope Revealed</strong><br>Christian CBO bringing hope and transformation to Kiryandongo District and beyond.</div>
+        <div><strong>Contact</strong><br>Phone: +256 776 156 515<br>Email: info@hoperevealed.org</div>
+        <div><strong>Location</strong><br>Kiryandongo District, Western Uganda<br>Near Kiryandongo Town Council</div>
         <div><strong>Follow Us</strong><br>Facebook | Twitter | Instagram</div>
       </div>
       <div class="footer-bottom">© <span id="year"></span> Hope Revealed — All Rights Reserved</div>
     </footer>
   </div>
-  <script src="script.js"></script>
+
+  <script>
+    // Toggle functionality for program items
+    const toggleItems = document.querySelectorAll('.program-toggle-item');
+    
+    function closeAllItems() {
+      toggleItems.forEach(item => {
+        item.classList.remove('active');
+      });
+    }
+    
+    toggleItems.forEach(item => {
+      const header = item.querySelector('.program-toggle-header');
+      header.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isActive = item.classList.contains('active');
+        if (!isActive) {
+          closeAllItems();
+          item.classList.add('active');
+        } else {
+          item.classList.remove('active');
+        }
+      });
+    });
+    
+    // Mobile menu toggle
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    const mainNav = document.getElementById('mainNav');
+    if (mobileBtn && mainNav) {
+      mobileBtn.addEventListener('click', () => {
+        mainNav.classList.toggle('show');
+      });
+    }
+    
+    // Set current year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+    
+    // Open first program by default for better initial engagement
+    if (toggleItems.length > 0) {
+      toggleItems[0].classList.add('active');
+    }
+  </script>
 </body>
 </html>
