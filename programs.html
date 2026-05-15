@@ -1,8 +1,8 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <meta name="description" content="Explore Hope Revealed's comprehensive programs: Mission Outreach, Sports, Health, Agriculture, Livelihood, and Capacity Building." />
   <title>Hope Revealed — Our Programs</title>
   <link rel="stylesheet" href="styles.css" />
@@ -135,6 +135,14 @@
       margin-top: 0.8rem;
     }
 
+    /* Logo image styling */
+    .logo img {
+      height: 45px;
+      width: auto;
+      border-radius: 10px;
+      object-fit: contain;
+    }
+
     @media (max-width: 700px) {
       .program-detail-grid {
         grid-template-columns: 1fr;
@@ -159,7 +167,8 @@
   <div class="wrap">
     <header>
       <a href="index.html" class="logo">
-        <div>HR</div> 
+        <!-- Fixed logo image display - using img tag for logo.jpeg -->
+        <img src="logo.jpeg" alt="Hope Revealed Logo" style="height: 45px; width: auto; border-radius: 10px;">
         <span>Hope Revealed</span>
       </a>
       <nav id="mainNav">
@@ -404,7 +413,7 @@
     <footer>
       <div class="footer-grid">
         <div><strong>Hope Revealed</strong><br>Christian CBO bringing hope and transformation to Kiryandongo District and beyond.</div>
-        <div><strong>Contact</strong><br>Phone: +256 776 156 515<br>Email: info@hoperevealed.org</div>
+        <div><strong>Contact</strong><br>Phone: +256 776 156 515<br>Email: info@hoperevealedfoundation.org</div>
         <div><strong>Location</strong><br>Kiryandongo District, Western Uganda<br>Near Kiryandongo Town Council</div>
         <div><strong>Follow Us</strong><br>Facebook | Twitter | Instagram</div>
       </div>
@@ -412,46 +421,69 @@
     </footer>
   </div>
 
+  <!-- Link to external script.js -->
+  <script src="script.js"></script>
+
   <script>
-    // Toggle functionality for program items
-    const toggleItems = document.querySelectorAll('.program-toggle-item');
-    
-    function closeAllItems() {
-      toggleItems.forEach(item => {
-        item.classList.remove('active');
-      });
-    }
-    
-    toggleItems.forEach(item => {
-      const header = item.querySelector('.program-toggle-header');
-      header.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const isActive = item.classList.contains('active');
-        if (!isActive) {
-          closeAllItems();
-          item.classList.add('active');
-        } else {
+    (function() {
+      // Toggle functionality for program items
+      const toggleItems = document.querySelectorAll('.program-toggle-item');
+      
+      function closeAllItems() {
+        toggleItems.forEach(item => {
           item.classList.remove('active');
+        });
+      }
+      
+      toggleItems.forEach(item => {
+        const header = item.querySelector('.program-toggle-header');
+        if (header) {
+          header.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isActive = item.classList.contains('active');
+            if (!isActive) {
+              closeAllItems();
+              item.classList.add('active');
+            } else {
+              item.classList.remove('active');
+            }
+          });
         }
       });
-    });
-    
-    // Mobile menu toggle
-    const mobileBtn = document.getElementById('mobileMenuBtn');
-    const mainNav = document.getElementById('mainNav');
-    if (mobileBtn && mainNav) {
-      mobileBtn.addEventListener('click', () => {
-        mainNav.classList.toggle('show');
-      });
-    }
-    
-    // Set current year in footer
-    document.getElementById('year').textContent = new Date().getFullYear();
-    
-    // Open first program by default for better initial engagement
-    if (toggleItems.length > 0) {
-      toggleItems[0].classList.add('active');
-    }
+      
+      // Set current year in footer
+      const yearSpan = document.getElementById('year');
+      if (yearSpan && !yearSpan.textContent) {
+        yearSpan.textContent = new Date().getFullYear();
+      }
+      
+      // Open first program by default for better initial engagement
+      if (toggleItems.length > 0) {
+        toggleItems[0].classList.add('active');
+      }
+      
+      // Handle logo image error fallback
+      const logoImg = document.querySelector('.logo img');
+      if (logoImg) {
+        logoImg.onerror = function() {
+          this.style.display = 'none';
+          const placeholder = document.createElement('div');
+          placeholder.textContent = 'HR';
+          placeholder.style.background = 'linear-gradient(135deg, var(--green), var(--green-light))';
+          placeholder.style.color = 'white';
+          placeholder.style.width = '45px';
+          placeholder.style.height = '45px';
+          placeholder.style.display = 'flex';
+          placeholder.style.alignItems = 'center';
+          placeholder.style.justifyContent = 'center';
+          placeholder.style.borderRadius = '12px';
+          placeholder.style.fontWeight = 'bold';
+          placeholder.style.fontSize = '1.3rem';
+          this.parentNode.insertBefore(placeholder, this);
+          this.remove();
+        };
+      }
+    })();
   </script>
 </body>
 </html>
