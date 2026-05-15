@@ -7,6 +7,66 @@
   <title>Hope Revealed — Transforming Communities | Home</title>
   <link rel="stylesheet" href="styles.css" />
   <style>
+    /* Override header background to dark blue */
+    header {
+      background: linear-gradient(135deg, #0a2463 0%, #1e3a8a 100%) !important;
+      border-bottom: none !important;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+    
+    /* Update header text colors for dark background */
+    header .logo span {
+      color: white !important;
+    }
+    
+    header nav a {
+      color: #e0e7ff !important;
+    }
+    
+    header nav a:hover, header nav a.active {
+      background: var(--red) !important;
+      color: white !important;
+    }
+    
+    header .cta {
+      background: linear-gradient(135deg, var(--red), var(--red-dark)) !important;
+      color: white !important;
+    }
+    
+    .mobile-menu-btn {
+      background: rgba(255,255,255,0.2) !important;
+      color: white !important;
+    }
+    
+    /* Animated blinking text for the headline */
+    .animated-headline {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+      border-left: none;
+      padding-left: 0;
+      color: var(--green-dark);
+      animation: gentlePulse 1.8s ease-in-out infinite;
+      display: inline-block;
+    }
+    
+    @keyframes gentlePulse {
+      0%, 100% {
+        opacity: 1;
+        text-shadow: 0 0 0px rgba(46,125,50,0);
+      }
+      50% {
+        opacity: 0.85;
+        text-shadow: 0 0 8px rgba(46,125,50,0.3);
+      }
+    }
+    
+    /* Optional: add a subtle glow effect on hover */
+    .animated-headline:hover {
+      animation: none;
+      color: var(--red);
+      transition: color 0.3s ease;
+    }
+    
     /* Additional homepage refinements that work with styles.css */
     .hero {
       display: grid;
@@ -21,13 +81,18 @@
       position: relative;
       overflow: hidden;
     }
-
-    .hero-content h3 {
-      font-size: 2.2rem;
-      margin-bottom: 1rem;
-      border-left: none;
-      padding-left: 0;
-      color: var(--green-dark);
+    
+    /* Add a decorative element to hero */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(46,125,50,0.03) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
     }
 
     .hero-content p {
@@ -44,6 +109,7 @@
       font-size: 0.75rem;
       margin-bottom: 1rem;
       font-weight: 600;
+      animation: fadeInUp 0.6s ease;
     }
 
     .stats {
@@ -58,6 +124,11 @@
       font-weight: 600;
       font-size: 0.9rem;
       color: var(--text-light);
+      transition: transform 0.3s ease;
+    }
+    
+    .stats div:hover {
+      transform: translateY(-3px);
     }
 
     .stats span {
@@ -98,7 +169,12 @@
       text-align: center;
       box-shadow: var(--shadow-md);
       transition: var(--transition);
+      animation: fadeInUp 0.5s ease backwards;
     }
+    
+    .impact-card:nth-child(1) { animation-delay: 0.1s; }
+    .impact-card:nth-child(2) { animation-delay: 0.2s; }
+    .impact-card:nth-child(3) { animation-delay: 0.3s; }
 
     .impact-card:hover {
       transform: translateY(-6px);
@@ -108,6 +184,12 @@
     .impact-icon {
       font-size: 3rem;
       margin-bottom: 1rem;
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+    
+    .impact-card:hover .impact-icon {
+      transform: scale(1.1);
     }
 
     .impact-card h4 {
@@ -146,8 +228,39 @@
       border-radius: 18px;
       font-weight: 800;
       line-height: 1.2;
+      transition: transform 0.3s ease;
+    }
+    
+    .event-item:hover .event-date {
+      transform: scale(1.05);
     }
 
+    /* Animation keyframes */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Button enhancements */
+    .actions .primary, .actions .secondary {
+      transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+    
+    .actions .primary:hover, .actions .secondary:hover {
+      transform: translateY(-3px) scale(1.02);
+    }
+    
+    /* Logo styling in dark header */
+    .logo img {
+      filter: brightness(0) invert(1);
+    }
+    
     /* Responsive */
     @media (max-width: 900px) {
       .hero {
@@ -159,7 +272,7 @@
         height: 280px;
       }
       
-      .hero-content h3 {
+      .animated-headline {
         font-size: 1.8rem;
       }
     }
@@ -177,6 +290,10 @@
         flex-direction: column;
         text-align: center;
       }
+      
+      .animated-headline {
+        font-size: 1.5rem;
+      }
     }
   </style>
 </head>
@@ -184,7 +301,6 @@
   <div class="wrap">
     <header>
       <a href="index.html" class="logo">
-        <!-- Fixed logo image display - now using img tag for logo.jpeg -->
         <img src="logo.jpeg" alt="Hope Revealed Logo" style="height: 45px; width: auto; border-radius: 10px;">
         <span>Hope Revealed</span>
       </a>
@@ -200,11 +316,11 @@
     </header>
 
     <main>
-      <!-- Hero Section -->
+      <!-- Hero Section with Animated Headline -->
       <section class="hero">
         <div class="hero-content">
-          <span class="badge">Since 2022</span>
-          <h3>Transforming Communities,<br>Empowering Christians</h3>
+          <span class="badge">✨ Since 2022 | Faith in Action ✨</span>
+          <h3 class="animated-headline">Transforming Communities,<br>Empowering Christians</h3>
           <p>
             Recognizing that we — the vision bearers, partners, and stakeholders of Hope Revealed — must unite to champion development and the wellbeing of disadvantaged Christian groups in Kiryandongo and Oyam Districts.
           </p>
@@ -247,7 +363,7 @@
 
       <!-- Upcoming Events -->
       <section class="events">
-        <h3>Upcoming Events</h3>
+        <h3>📅 Upcoming Events</h3>
         <div class="events-list">
           <div class="event-item">
             <div class="event-date">15<br>May</div>
@@ -263,6 +379,13 @@
           </div>
         </div>
       </section>
+      
+      <!-- Call to Action Banner - Additional Engagement -->
+      <div class="cta-banner" style="background: linear-gradient(135deg, #0a2463, #1e3a8a); border-radius: var(--radius); padding: 2.5rem; text-align: center; margin: 2rem 0;">
+        <h3 style="color: white; border-left: none; margin-bottom: 0.5rem;">🙏 Become a Hope Partner</h3>
+        <p style="color: #e0e7ff; margin-bottom: 1.5rem;">Join us in transforming lives through prayer, giving, or volunteering.</p>
+        <a href="donate.html" class="primary" style="background: white; color: #0a2463; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">Support Our Mission →</a>
+      </div>
     </main>
 
     <footer>
@@ -288,7 +411,7 @@
         yearSpan.textContent = new Date().getFullYear();
       }
       
-      // Mobile menu toggle
+      // Mobile menu toggle with enhanced functionality
       const menuBtn = document.getElementById('menuBtn');
       const mainNav = document.getElementById('mainNav');
       if (menuBtn && mainNav && !menuBtn.hasAttribute('data-home-listener')) {
@@ -313,11 +436,55 @@
         });
       }
       
+      // Animate stats counter when they come into view
+      const statNumbers = document.querySelectorAll('.stats span');
+      if (statNumbers.length && !window._statsAnimated) {
+        window._statsAnimated = true;
+        
+        const animateStats = () => {
+          statNumbers.forEach(el => {
+            const rawText = el.innerText;
+            const match = rawText.match(/\d+/);
+            if (match) {
+              const target = parseInt(match[0], 10);
+              if (!isNaN(target) && !el.dataset.animated) {
+                el.dataset.animated = 'true';
+                let current = 0;
+                const increment = Math.ceil(target / 40);
+                const suffix = rawText.replace(/[\d]/g, '');
+                const timer = setInterval(() => {
+                  current += increment;
+                  if (current >= target) {
+                    el.innerText = target + suffix;
+                    clearInterval(timer);
+                  } else {
+                    el.innerText = current + suffix;
+                  }
+                }, 25);
+              }
+            }
+          });
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              animateStats();
+              observer.disconnect();
+            }
+          });
+        }, { threshold: 0.3 });
+        
+        const statsSection = document.querySelector('.stats');
+        if (statsSection) observer.observe(statsSection);
+      }
+      
       // Handle logo image error fallback
       const logoImg = document.querySelector('.logo img');
       if (logoImg) {
         logoImg.onerror = function() {
           this.style.display = 'none';
+          this.style.filter = 'none';
           const placeholder = document.createElement('div');
           placeholder.textContent = 'HR';
           placeholder.style.background = 'linear-gradient(135deg, var(--green), var(--green-light))';
@@ -334,6 +501,25 @@
           this.remove();
         };
       }
+      
+      // Add smooth reveal animation for cards on scroll
+      const cards = document.querySelectorAll('.impact-card, .event-item');
+      const cardObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+            cardObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      cards.forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        cardObserver.observe(card);
+      });
     })();
   </script>
 </body>
