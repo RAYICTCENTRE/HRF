@@ -27,9 +27,32 @@
 body {
   background: var(--cream);
   color: var(--text);
-  line-height: 1.55;
-  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  line-height: 1.6;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
   overflow-x: hidden;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+/* Modern font system - consistent & clean */
+h1, h2, h3, h4, .logo, nav a, .cta, .primary, .secondary {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+p, li, .card, .board-list div, .event-detail, .info-card {
+  font-weight: 400;
+  letter-spacing: normal;
+}
+
+/* Text alignment utilities */
+.text-center {
+  text-align: center;
+}
+
+.text-justify {
+  text-align: justify;
 }
 
 .wrap {
@@ -38,10 +61,10 @@ body {
   padding: 0 32px;
 }
 
-/* Typography */
+/* Typography with refined spacing */
 h1, h2, h3, h4 {
   font-weight: 700;
-  line-height: 1.2;
+  line-height: 1.25;
   letter-spacing: -0.02em;
 }
 
@@ -52,31 +75,63 @@ h1 {
   background-clip: text;
   color: transparent;
   margin-bottom: 1rem;
+  text-align: center;
+}
+
+h2 {
+  font-size: 2.2rem;
+  margin-bottom: 1.5rem;
+  color: var(--green-dark);
+  text-align: center;
 }
 
 h3 {
-  font-size: 2rem;
-  margin-bottom: 1.8rem;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
   border-left: 6px solid var(--red);
   padding-left: 1.2rem;
   color: var(--green-dark);
 }
 
-/* Header - Enhanced */
+h4 {
+  font-size: 1.3rem;
+  margin-bottom: 0.8rem;
+  color: var(--green-dark);
+}
+
+p {
+  margin-bottom: 1rem;
+  text-align: justify;
+}
+
+/* Header - Enhanced Banner Visibility */
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.2rem 0;
-  border-bottom: 3px solid var(--green);
+  padding: 1rem 2rem;
   flex-wrap: wrap;
   gap: 1rem;
-  backdrop-filter: blur(0px);
-  background: rgba(255, 253, 244, 0.95);
+  background: rgba(255, 253, 244, 0.98);
+  backdrop-filter: blur(8px);
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 1000;
   transition: var(--transition);
+  border-bottom: 1px solid rgba(46, 125, 50, 0.2);
+  box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+}
+
+/* Improved banner strip on the head - prominent but elegant */
+header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--red), var(--green-light), var(--green), var(--red));
+  z-index: 1001;
 }
 
 .logo {
@@ -107,6 +162,7 @@ nav {
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 nav a {
@@ -149,7 +205,7 @@ nav a:hover, nav a.active {
   grid-template-columns: 1fr 1fr;
   gap: 3rem;
   align-items: center;
-  margin: 3rem 0 4rem 0;
+  margin: 2rem 0 4rem 0;
   background: var(--card);
   border-radius: var(--radius);
   padding: 3rem;
@@ -195,6 +251,7 @@ nav a:hover, nav a.active {
 }
 
 .hero h1 {
+  text-align: left;
   margin-bottom: 1.2rem;
 }
 
@@ -202,6 +259,7 @@ nav a:hover, nav a.active {
   color: var(--text-light);
   margin-bottom: 1.8rem;
   font-size: 1.05rem;
+  text-align: justify;
 }
 
 .actions {
@@ -221,6 +279,7 @@ nav a:hover, nav a.active {
   transition: var(--transition);
   display: inline-block;
   box-shadow: 0 4px 12px rgba(46,125,50,0.3);
+  text-align: center;
 }
 
 .secondary {
@@ -232,6 +291,7 @@ nav a:hover, nav a.active {
   font-weight: 600;
   transition: var(--transition);
   background: transparent;
+  text-align: center;
 }
 
 .primary:hover, .secondary:hover {
@@ -251,12 +311,14 @@ nav a:hover, nav a.active {
   margin-top: 1rem;
   padding-top: 1rem;
   border-top: 2px solid rgba(46,125,50,0.2);
+  justify-content: flex-start;
 }
 
 .stats div {
   font-weight: 600;
   font-size: 0.9rem;
   color: var(--text-light);
+  text-align: center;
 }
 
 .stats span {
@@ -320,6 +382,11 @@ nav a:hover, nav a.active {
   font-size: 1.4rem;
   margin-bottom: 0.75rem;
   color: var(--green-dark);
+  text-align: center;
+}
+
+.impact-card p {
+  text-align: center;
 }
 
 /* Events List */
@@ -361,40 +428,55 @@ nav a:hover, nav a.active {
   font-size: 1.1rem;
 }
 
-/* Programs */
-    .programs {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
-      gap: 20px;
-    }
-    .program {
-      background: white;
-      border-left: 5px solid var(--green);
-      border-radius: var(--radius);
-      overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    }
-    .program img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-    }
-    .program h4 {
-      margin: 12px;
-      color: var(--green-dark);
-    }
-    .program p {
-      margin: 0 12px 14px 12px;
-      color: var(--muted);
-    }
+.event-detail p {
+  text-align: left;
+}
 
-    
+/* Programs */
+.programs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
+  gap: 24px;
+}
+
+.program {
+  background: white;
+  border-left: 5px solid var(--green);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: var(--transition);
+}
+
+.program:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.program img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.program h4 {
+  margin: 1rem 1rem 0.5rem;
+  color: var(--green-dark);
+}
+
+.program p {
+  margin: 0 1rem 1.2rem 1rem;
+  color: var(--text-light);
+  text-align: justify;
+}
+
 /* Governance & Leadership */
 .leaders-grid {
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
   margin: 2rem 0;
+  justify-content: center;
 }
 
 .leader-card {
@@ -456,7 +538,7 @@ form input, form select, form textarea {
   margin-bottom: 1.2rem;
   border: 1px solid #e0e0e0;
   border-radius: 14px;
-  font-family: inherit;
+  font-family: 'Inter', sans-serif;
   font-size: 1rem;
   transition: var(--transition);
 }
@@ -537,6 +619,7 @@ details p {
   padding-top: 1rem;
   border-top: 1px solid #eee;
   color: var(--text-light);
+  text-align: justify;
 }
 
 /* Donate Page */
@@ -559,6 +642,7 @@ details p {
   flex-wrap: wrap;
   gap: 0.8rem;
   margin: 1.5rem 0;
+  justify-content: center;
 }
 
 .donate-amt {
@@ -629,12 +713,13 @@ details p {
   color: white;
   border-left-color: white;
   margin-bottom: 1rem;
+  text-align: center;
 }
 
 /* Page Header */
 .page-header {
   text-align: center;
-  margin: 3rem 0 2rem;
+  margin: 2rem 0 2rem;
 }
 
 .page-header h1 {
@@ -643,11 +728,13 @@ details p {
   background-clip: text;
   color: transparent;
   margin-bottom: 0.5rem;
+  text-align: center;
 }
 
 .page-header p {
   color: var(--text-light);
   font-size: 1.1rem;
+  text-align: center;
 }
 
 /* Footer - Enhanced */
@@ -668,6 +755,11 @@ footer {
 
 .footer-grid div {
   line-height: 1.6;
+  text-align: center;
+}
+
+.footer-grid div p, .footer-grid div strong {
+  text-align: center;
 }
 
 .footer-bottom {
@@ -697,7 +789,56 @@ footer {
   transform: translateY(-4px);
 }
 
-/* Mobile Responsive - Improved */
+.mission-vision .card p {
+  text-align: justify;
+}
+
+/* About story section */
+.about-story {
+  display: flex;
+  gap: 2rem;
+  margin: 2rem 0;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.about-story .story-text p {
+  text-align: justify;
+}
+
+/* Gallery / Slider container */
+.gallery-container {
+  flex: 1;
+  background: #e7dfd1;
+  border-radius: 28px;
+  padding: 1rem;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.05);
+}
+
+.slider-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.slider {
+  display: flex;
+  transition: transform 0.4s ease-in-out;
+}
+
+.slide {
+  flex: 0 0 100%;
+}
+
+.slide img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 18px;
+}
+
+/* Responsive - Improved */
 @media (max-width: 900px) {
   .wrap {
     padding: 0 20px;
@@ -705,6 +846,10 @@ footer {
   
   h1 {
     font-size: 2.2rem;
+  }
+  
+  h2 {
+    font-size: 1.8rem;
   }
   
   h3 {
@@ -721,7 +866,7 @@ footer {
     height: 280px;
   }
   
-  .contact-page-grid, .donate-grid, .program-card, .mission-vision {
+  .contact-page-grid, .donate-grid, .mission-vision {
     grid-template-columns: 1fr;
   }
   
@@ -752,20 +897,24 @@ footer {
     font-size: 1.5rem;
   }
   
-  .program-card {
-    grid-template-columns: 1fr;
-  }
-  
-  .program-card img {
-    height: 200px;
-  }
-  
   .leaders-grid {
     flex-direction: column;
   }
   
   .footer-grid {
     grid-template-columns: 1fr;
+  }
+  
+  .about-story {
+    flex-direction: column;
+  }
+  
+  .event-item {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .event-detail p {
     text-align: center;
   }
 }
@@ -783,8 +932,34 @@ footer {
     grid-template-columns: 1fr;
   }
   
-  .event-item {
-    flex-direction: column;
-    text-align: center;
+  header {
+    padding: 0.8rem 1rem;
+  }
+  
+  .slide img {
+    height: 200px;
+  }
+}
+
+/* Additional alignment fixes */
+.card p, .impact-card p, .program p, .info-card p, .board-list div {
+  text-align: justify;
+}
+
+.hero h1, .page-header h1, .cta-banner h3 {
+  text-align: center;
+}
+
+@media (min-width: 901px) {
+  .hero h1 {
+    text-align: left;
+  }
+  
+  .footer-grid div {
+    text-align: left;
+  }
+  
+  .footer-grid div p, .footer-grid div strong {
+    text-align: left;
   }
 }
