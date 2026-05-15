@@ -166,6 +166,27 @@
       line-height: 1.5;
     }
 
+    /* Logo styling - ensure proper alignment */
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+    
+    .logo img {
+      height: 45px;
+      width: auto;
+      border-radius: 10px;
+      object-fit: contain;
+    }
+    
+    .logo span {
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: var(--green-dark);
+    }
+
     /* Responsive adjustments */
     @media (max-width: 900px) {
       .contact-page-grid {
@@ -186,15 +207,23 @@
       form input, form select, form textarea {
         padding: 0.75rem 0.9rem;
       }
+      
+      .logo span {
+        font-size: 1.1rem;
+      }
+      
+      .logo img {
+        height: 35px;
+      }
     }
   </style>
 </head>
 <body>
   <div class="wrap">
     <header>
-      <<a href="index.html" class="logo">
-  <img src="logo.jpeg" alt="Hope Revealed Logo" style="height: 45px; width: auto; border-radius: 10px;">
-  <span>Hope Revealed</span>
+      <a href="index.html" class="logo">
+        <img src="logo.jpeg" alt="Hope Revealed Logo">
+        <span>Hope Revealed</span>
       </a>
       <nav id="mainNav">
         <a href="index.html">Home</a>
@@ -263,7 +292,7 @@
         </details>
         <details>
           <summary>How do I sponsor a program?</summary>
-          <p>Email our Partnerships team at partners@hoperevealed.org or call +256 786 033 088. We have sponsorship packages for education, livelihood training, and mission outreach.</p>
+          <p>Email our Partnerships team at info@hoperevealedfoundation.org or call +256 786 033 088. We have sponsorship packages for education, livelihood training, and mission outreach.</p>
         </details>
         <details>
           <summary>Can I visit your projects?</summary>
@@ -292,10 +321,31 @@
       // Ensure mobile menu works if script.js hasn't fully initialized or for extra safety
       const menuBtn = document.getElementById('menuBtn');
       const mainNav = document.getElementById('mainNav');
-      if (menuBtn && mainNav && !mainNav.classList) {
-        menuBtn.addEventListener('click', () => {
-          mainNav.classList.toggle('show');
-        });
+      if (menuBtn && mainNav) {
+        if (!menuBtn.hasAttribute('data-listener')) {
+          menuBtn.setAttribute('data-listener', 'true');
+          menuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            mainNav.classList.toggle('show');
+            menuBtn.setAttribute('aria-expanded', mainNav.classList.contains('show'));
+            menuBtn.innerHTML = mainNav.classList.contains('show') ? '✕' : '☰';
+            if (mainNav.classList.contains('show')) {
+              document.body.style.overflow = 'hidden';
+            } else {
+              document.body.style.overflow = '';
+            }
+          });
+          
+          // Close menu when clicking outside
+          document.addEventListener('click', (e) => {
+            if (mainNav.classList.contains('show') && !mainNav.contains(e.target) && !menuBtn.contains(e.target)) {
+              mainNav.classList.remove('show');
+              menuBtn.setAttribute('aria-expanded', 'false');
+              menuBtn.innerHTML = '☰';
+              document.body.style.overflow = '';
+            }
+          });
+        }
       }
       
       // Year fallback if needed
@@ -346,7 +396,7 @@
             feedbackDiv.style.display = 'block';
           }
           
-          // Simulate network request (replace with actual fetch if backend available)
+          // Simulate network request
           await new Promise(resolve => setTimeout(resolve, 800));
           
           // Success message
@@ -367,6 +417,28 @@
             }
           }, 5000);
         });
+      }
+      
+      // Logo image error fallback
+      const logoImg = document.querySelector('.logo img');
+      if (logoImg) {
+        logoImg.onerror = function() {
+          this.style.display = 'none';
+          const placeholder = document.createElement('div');
+          placeholder.textContent = 'HR';
+          placeholder.style.background = 'linear-gradient(135deg, var(--green), var(--green-light))';
+          placeholder.style.color = 'white';
+          placeholder.style.width = '45px';
+          placeholder.style.height = '45px';
+          placeholder.style.display = 'flex';
+          placeholder.style.alignItems = 'center';
+          placeholder.style.justifyContent = 'center';
+          placeholder.style.borderRadius = '12px';
+          placeholder.style.fontWeight = 'bold';
+          placeholder.style.fontSize = '1.3rem';
+          this.parentNode.insertBefore(placeholder, this);
+          this.remove();
+        };
       }
     })();
   </script>
