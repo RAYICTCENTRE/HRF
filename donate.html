@@ -1,12 +1,233 @@
-<!-- donate.html -->
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="Support Hope Revealed's mission. Donate to transform communities in Uganda." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="description" content="Support Hope Revealed's mission. Donate to transform communities in Uganda. Your gift brings hope and empowerment." />
   <title>Hope Revealed — Donate & Support</title>
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Donate page specific refinements that seamlessly extend styles.css */
+    .donate-grid {
+      display: grid;
+      grid-template-columns: 1fr 0.9fr;
+      gap: 2.5rem;
+      margin: 2rem 0 3rem;
+    }
+
+    .donate-form-panel {
+      background: var(--card);
+      padding: 2rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-md);
+      transition: var(--transition);
+    }
+
+    .donate-form-panel:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .donate-form-panel h3 {
+      font-size: 1.6rem;
+      margin-bottom: 1.2rem;
+      color: var(--green-dark);
+      border-left: 5px solid var(--red);
+      padding-left: 1rem;
+    }
+
+    .donation-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin: 1.5rem 0;
+      justify-content: flex-start;
+    }
+
+    .donate-amt {
+      background: #f0f0ea;
+      border: none;
+      padding: 0.8rem 1.6rem;
+      border-radius: 60px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+      font-size: 1rem;
+      font-family: 'Inter', system-ui, sans-serif;
+    }
+
+    .donate-amt:hover {
+      background: var(--green);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(46,125,50,0.2);
+    }
+
+    .donate-amt.active-amount {
+      background: var(--red);
+      color: white;
+      box-shadow: 0 4px 12px rgba(198,40,40,0.3);
+    }
+
+    #customAmount {
+      width: 100%;
+      padding: 0.9rem 1rem;
+      margin: 0.8rem 0 1rem;
+      border: 1.5px solid #e2e0d6;
+      border-radius: 14px;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+
+    #customAmount:focus {
+      outline: none;
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px rgba(46,125,50,0.1);
+    }
+
+    .donor-details input {
+      width: 100%;
+      padding: 0.9rem 1rem;
+      margin-bottom: 1rem;
+      border: 1.5px solid #e2e0d6;
+      border-radius: 14px;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+
+    .donor-details input:focus {
+      outline: none;
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px rgba(46,125,50,0.1);
+    }
+
+    .donor-details label {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin: 1rem 0 1.2rem;
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    #monthlyCheck {
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+      accent-color: var(--green);
+    }
+
+    .donate-submit {
+      width: 100%;
+      margin-top: 0.5rem;
+      background: linear-gradient(135deg, var(--red), var(--red-dark));
+      color: white;
+      border: none;
+      padding: 1rem;
+      border-radius: 60px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .donate-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(198,40,40,0.35);
+    }
+
+    .secure-note {
+      text-align: center;
+      margin-top: 1.2rem;
+      font-size: 0.85rem;
+      color: var(--text-light);
+      background: #f9f9f4;
+      padding: 0.6rem;
+      border-radius: 50px;
+    }
+
+    .donate-impact {
+      height: 100%;
+    }
+
+    .donate-impact .card {
+      background: var(--card);
+      padding: 2rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-md);
+      height: 100%;
+      transition: var(--transition);
+    }
+
+    .donate-impact .card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .donate-impact h4 {
+      font-size: 1.5rem;
+      color: var(--green-dark);
+      margin-bottom: 1.2rem;
+      border-left: 5px solid var(--green);
+      padding-left: 1rem;
+    }
+
+    .donate-impact ul {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 1.5rem;
+    }
+
+    .donate-impact li {
+      padding: 0.7rem 0;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 1rem;
+    }
+
+    .donate-impact li::before {
+      content: "✓";
+      color: var(--green);
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    .donate-impact p {
+      background: #eef4ea;
+      padding: 1rem;
+      border-radius: 16px;
+      margin-top: 1rem;
+      text-align: center;
+      font-weight: 500;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .donate-grid {
+        grid-template-columns: 1fr;
+        gap: 1.8rem;
+      }
+      
+      .donation-buttons {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 550px) {
+      .donate-form-panel, .donate-impact .card {
+        padding: 1.5rem;
+      }
+      
+      .donate-amt {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="wrap">
@@ -15,7 +236,7 @@
         <div>HR</div> 
         <span>Hope Revealed</span>
       </a>
-      <nav>
+      <nav id="mainNav">
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
         <a href="programs.html">Programs</a>
@@ -23,13 +244,13 @@
         <a href="contact.html">Contact</a>
         <a href="donate.html" class="cta active">Donate</a>
       </nav>
-      <button class="mobile-menu-btn" aria-label="Menu">☰</button>
+      <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu">☰</button>
     </header>
 
     <main>
       <section class="page-header">
         <h1>Give Hope Today</h1>
-        <p>Your generosity empowers communities and transforms lives.</p>
+        <p>Your generosity empowers communities and transforms lives in Uganda.</p>
       </section>
 
       <div class="donate-grid">
@@ -42,29 +263,36 @@
             <button class="donate-amt" data-amt="100">$100</button>
             <button class="donate-amt custom" data-custom="true">Custom</button>
           </div>
-          <input type="number" id="customAmount" placeholder="Enter amount (USD)" style="display:none; margin:10px 0; padding: 12px; border-radius: 12px; border: 1px solid #ddd;">
+          <input type="number" id="customAmount" placeholder="Enter amount (USD)" step="1" min="1" style="display:none;">
           <div class="donor-details">
             <input type="text" placeholder="Full Name" id="donorName">
             <input type="email" placeholder="Email" id="donorEmail">
-            <label style="display: flex; align-items: center; gap: 10px; margin: 15px 0;">
+            <label>
               <input type="checkbox" id="monthlyCheck"> Make this a monthly donation
             </label>
           </div>
-          <button id="donateNowBtn" class="primary donate-submit">Donate Now →</button>
-          <div class="secure-note">🔒 Secure SSL encrypted payment</div>
+          <button id="donateNowBtn" class="donate-submit">Donate Now →</button>
+          <div class="secure-note">🔒 Secure SSL encrypted payment • 100% goes to programs</div>
         </div>
         <div class="donate-impact">
-          <div class="card" style="background: white; padding: 2rem; border-radius: 20px;">
+          <div class="card">
             <h4>Where your money goes</h4>
-            <ul style="list-style: none; padding: 0;">
-              <li>✓ $10 - School supplies for 5 children</li>
-              <li>✓ $25 - Medical outreach for 20 families</li>
-              <li>✓ $50 - Seeds & tools for a farming family</li>
-              <li>✓ $100 - Sponsor a youth sports tournament</li>
+            <ul>
+              <li>$10 - School supplies for 5 children</li>
+              <li>$25 - Medical outreach for 20 families</li>
+              <li>$50 - Seeds & tools for a farming family</li>
+              <li>$100 - Sponsor a youth sports tournament</li>
+              <li>$250 - Train a community livelihood group</li>
             </ul>
-            <p><strong>100% of donations directly fund programs.</strong> Administrative costs are covered by private grants.</p>
+            <p><strong>100% of donations directly fund programs.</strong> Administrative costs are covered by private grants and partnerships.</p>
           </div>
         </div>
+      </div>
+      
+      <!-- Additional impact message -->
+      <div class="cta-banner" style="margin-top: 1rem; text-align: center; background: linear-gradient(135deg, var(--green), var(--green-dark));">
+        <h3 style="color: white; border-left: none;">Every gift changes lives</h3>
+        <p style="color: #f9f0d6;">Join us in revealing hope to thousands of families across northern Uganda.</p>
       </div>
     </main>
 
@@ -78,6 +306,86 @@
       <div class="footer-bottom">© <span id="year"></span> Hope Revealed — All Rights Reserved</div>
     </footer>
   </div>
+  
+  <!-- Link to external script.js for dynamic donation handling and mobile menu -->
   <script src="script.js"></script>
+  
+  <!-- Donate page specific enhancements that complement script.js -->
+  <script>
+    (function() {
+      // Ensure year is set
+      const yearSpan = document.getElementById('year');
+      if (yearSpan && !yearSpan.textContent) {
+        yearSpan.textContent = new Date().getFullYear();
+      }
+      
+      // Mobile menu fallback (in case script.js doesn't handle this specific button)
+      const menuBtn = document.getElementById('menuBtn');
+      const mainNav = document.getElementById('mainNav');
+      if (menuBtn && mainNav) {
+        // Avoid duplicate listeners by checking if already handled
+        if (!menuBtn.hasAttribute('data-listener')) {
+          menuBtn.setAttribute('data-listener', 'true');
+          menuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            mainNav.classList.toggle('show');
+            menuBtn.setAttribute('aria-expanded', mainNav.classList.contains('show'));
+            menuBtn.innerHTML = mainNav.classList.contains('show') ? '✕' : '☰';
+            if (mainNav.classList.contains('show')) {
+              document.body.style.overflow = 'hidden';
+            } else {
+              document.body.style.overflow = '';
+            }
+          });
+          
+          // Close menu when clicking outside
+          document.addEventListener('click', (e) => {
+            if (mainNav.classList.contains('show') && !mainNav.contains(e.target) && !menuBtn.contains(e.target)) {
+              mainNav.classList.remove('show');
+              menuBtn.setAttribute('aria-expanded', 'false');
+              menuBtn.innerHTML = '☰';
+              document.body.style.overflow = '';
+            }
+          });
+        }
+      }
+      
+      // Enhance donation buttons to work smoothly with script.js and provide visual feedback
+      const donateBtns = document.querySelectorAll('.donate-amt');
+      const customAmountField = document.getElementById('customAmount');
+      
+      if (donateBtns.length && !window._donateInitialized) {
+        window._donateInitialized = true;
+        
+        donateBtns.forEach(btn => {
+          btn.addEventListener('click', function(e) {
+            // Remove active class from all buttons
+            donateBtns.forEach(b => b.classList.remove('active-amount'));
+            this.classList.add('active-amount');
+            
+            const isCustom = this.dataset.custom === 'true';
+            if (isCustom && customAmountField) {
+              customAmountField.style.display = 'block';
+              customAmountField.focus();
+            } else if (customAmountField) {
+              customAmountField.style.display = 'none';
+              customAmountField.value = '';
+            }
+          });
+        });
+        
+        // Handle custom amount field visibility
+        if (customAmountField) {
+          customAmountField.addEventListener('input', function() {
+            if (this.value && parseFloat(this.value) > 0) {
+              // Keep custom button active style
+              const customBtn = document.querySelector('.donate-amt[data-custom="true"]');
+              if (customBtn) customBtn.classList.add('active-amount');
+            }
+          });
+        }
+      }
+    })();
+  </script>
 </body>
 </html>
