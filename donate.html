@@ -205,7 +205,7 @@
       font-weight: 500;
     }
 
-    /* Payment Modal Styles */
+    /* Payment Modal Styles - Smaller, Compact Design */
     .payment-modal {
       display: none;
       position: fixed;
@@ -213,8 +213,8 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0,0,0,0.6);
-      backdrop-filter: blur(4px);
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(3px);
       z-index: 2000;
       align-items: center;
       justify-content: center;
@@ -226,47 +226,74 @@
 
     .payment-modal-content {
       background: white;
-      max-width: 450px;
+      max-width: 380px;
       width: 90%;
-      border-radius: 28px;
-      padding: 2rem;
-      box-shadow: var(--shadow-lg);
-      animation: modalSlideIn 0.3s ease;
+      border-radius: 24px;
+      padding: 1.5rem;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      animation: modalSlideIn 0.25s ease;
+      position: relative;
     }
 
     @keyframes modalSlideIn {
       from {
         opacity: 0;
-        transform: translateY(-30px);
+        transform: scale(0.95) translateY(-10px);
       }
       to {
         opacity: 1;
-        transform: translateY(0);
+        transform: scale(1) translateY(0);
       }
     }
 
-    .payment-modal-content h3 {
+    .payment-modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #f0e5d4;
+    }
+
+    .payment-modal-header h3 {
       color: var(--green-dark);
-      margin-bottom: 0.5rem;
+      font-size: 1.3rem;
+      margin: 0;
       border-left: none;
       padding-left: 0;
-      text-align: center;
+    }
+
+    .close-modal-x {
+      background: none;
+      border: none;
+      font-size: 1.6rem;
+      cursor: pointer;
+      color: #999;
+      transition: var(--transition);
+      line-height: 1;
+      padding: 0 5px;
+    }
+
+    .close-modal-x:hover {
+      color: var(--red);
     }
 
     .payment-modal-content p {
       text-align: center;
       margin-bottom: 1rem;
+      font-size: 0.9rem;
+      color: var(--text-light);
     }
 
     .payment-options {
-      margin: 1.5rem 0;
+      margin: 1rem 0;
     }
 
     .payment-option {
-      background: #f5f5f0;
-      padding: 1rem;
-      border-radius: 16px;
-      margin-bottom: 0.8rem;
+      background: #f8f6f0;
+      padding: 0.8rem 1rem;
+      border-radius: 14px;
+      margin-bottom: 0.7rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -274,27 +301,55 @@
       gap: 0.5rem;
     }
 
+    .payment-option-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
     .payment-option strong {
       color: var(--green-dark);
-      font-size: 1.1rem;
+      font-size: 0.9rem;
+    }
+
+    .provider-badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 20px;
+      background: #e8e8e0;
+      color: #555;
+    }
+
+    .provider-badge.mtn {
+      background: #ffe0b3;
+      color: #c96f0d;
+    }
+
+    .provider-badge.airtel {
+      background: #ffd9d9;
+      color: #c62828;
     }
 
     .payment-number {
       font-family: monospace;
-      font-size: 1.1rem;
+      font-size: 1rem;
       font-weight: 700;
-      color: var(--red);
-      letter-spacing: 1px;
+      color: var(--green-dark);
+      letter-spacing: 0.5px;
+      background: white;
+      padding: 0.2rem 0.6rem;
+      border-radius: 20px;
     }
 
     .copy-btn {
       background: var(--green);
       color: white;
       border: none;
-      padding: 0.4rem 1rem;
+      padding: 0.3rem 0.9rem;
       border-radius: 30px;
       cursor: pointer;
-      font-size: 0.8rem;
+      font-size: 0.7rem;
       transition: var(--transition);
     }
 
@@ -302,21 +357,42 @@
       background: var(--green-dark);
     }
 
-    .close-modal-btn {
-      width: 100%;
-      background: #e0e0d8;
+    .modal-buttons {
+      display: flex;
+      gap: 0.8rem;
+      margin-top: 1.2rem;
+    }
+
+    .cancel-btn {
+      flex: 1;
+      background: #e8e8e0;
       color: var(--text);
       border: none;
-      padding: 0.8rem;
+      padding: 0.7rem;
       border-radius: 40px;
       cursor: pointer;
       font-weight: 600;
-      margin-top: 1rem;
+      transition: var(--transition);
+    }
+
+    .cancel-btn:hover {
+      background: #d4d4c8;
+    }
+
+    .close-modal-btn {
+      flex: 1;
+      background: var(--red);
+      color: white;
+      border: none;
+      padding: 0.7rem;
+      border-radius: 40px;
+      cursor: pointer;
+      font-weight: 600;
       transition: var(--transition);
     }
 
     .close-modal-btn:hover {
-      background: #ccc;
+      background: var(--red-dark);
     }
 
     /* Logo image styling */
@@ -353,6 +429,10 @@
         flex-direction: column;
         text-align: center;
       }
+      
+      .payment-option-info {
+        align-items: center;
+      }
     }
   </style>
 </head>
@@ -360,7 +440,6 @@
   <div class="wrap">
     <header>
       <a href="index.html" class="logo">
-        <!-- Logo image displayed -->
         <img src="logo.jpeg" alt="Hope Revealed Logo" style="height: 45px; width: auto; border-radius: 10px;">
         <span>Hope Revealed</span>
       </a>
@@ -395,7 +474,7 @@
           <div class="donor-details">
             <input type="text" placeholder="Full Name" id="donorName" required>
             <input type="email" placeholder="Email" id="donorEmail" required>
-            <input type="tel" placeholder="Phone Number (for payment confirmation)" id="donorPhone">
+            <input type="tel" placeholder="Phone Number (optional)" id="donorPhone">
             <label>
               <input type="checkbox" id="monthlyCheck"> Make this a monthly donation
             </label>
@@ -436,37 +515,55 @@
     </footer>
   </div>
 
-  <!-- Payment Modal -->
+  <!-- Payment Modal - Smaller Size -->
   <div id="paymentModal" class="payment-modal">
     <div class="payment-modal-content">
-      <h3>💝 Complete Your Donation</h3>
+      <div class="payment-modal-header">
+        <h3>💝 Complete Donation</h3>
+        <button class="close-modal-x" id="closeModalX">&times;</button>
+      </div>
       <p>Send payment via Mobile Money to any of these numbers:</p>
       <div class="payment-options">
+        <!-- MTN Number 1 -->
         <div class="payment-option">
-          <strong>MTN Mobile Money:</strong>
-          <span class="payment-number">0776 156 515</span>
-          <button class="copy-btn" data-number="0776156515">Copy</button>
+          <div class="payment-option-info">
+            <strong>MTN Mobile Money</strong>
+            <span class="provider-badge mtn">MTN Uganda</span>
+          </div>
+          <span class="payment-number">+256 776 156 515</span>
+          <button class="copy-btn" data-number="256776156515">Copy</button>
         </div>
+        <!-- Airtel Number -->
         <div class="payment-option">
-          <strong>Airtel Money:</strong>
-          <span class="payment-number">0786 033 088</span>
-          <button class="copy-btn" data-number="0786033088">Copy</button>
+          <div class="payment-option-info">
+            <strong>Airtel Money</strong>
+            <span class="provider-badge airtel">Airtel Uganda</span>
+          </div>
+          <span class="payment-number">+256 786 033 088</span>
+          <button class="copy-btn" data-number="256786033088">Copy</button>
         </div>
+        <!-- MTN Number 2 (starting with 070) - This is Airtel in Uganda, corrected -->
         <div class="payment-option">
-          <strong>MTN Mobile Money:</strong>
-          <span class="payment-number">0704 567 890</span>
-          <button class="copy-btn" data-number="0704567890">Copy</button>
+          <div class="payment-option-info">
+            <strong>Airtel Money</strong>
+            <span class="provider-badge airtel">Airtel Uganda</span>
+          </div>
+          <span class="payment-number">+256 704 567 890</span>
+          <button class="copy-btn" data-number="256704567890">Copy</button>
         </div>
       </div>
-      <p style="font-size: 0.85rem; color: #666;">After payment, our team will confirm within 24 hours. A receipt will be sent to your email.</p>
-      <button class="close-modal-btn" onclick="closePaymentModal()">Close</button>
+      <p style="font-size: 0.75rem; color: #888; text-align: center; margin-top: 0.5rem;">After payment, our team will confirm within 24 hours. A receipt will be sent to your email.</p>
+      <div class="modal-buttons">
+        <button class="cancel-btn" id="cancelModalBtn">Cancel</button>
+        <button class="close-modal-btn" id="closeModalBtn">Close</button>
+      </div>
     </div>
   </div>
 
   <!-- Link to external script.js -->
   <script src="script.js"></script>
 
-  <!-- Donate page specific enhancements with email notification and payment modal -->
+  <!-- Donate page specific enhancements -->
   <script>
     (function() {
       // Set copyright year
@@ -531,10 +628,8 @@
         });
       }
       
-      // Function to send email notification to info@hoperevealedfoundation.org
+      // Function to send email notification
       function sendEmailNotification(donorData) {
-        // Using mailto protocol to open default email client
-        // This allows donor to send a notification directly
         const subject = encodeURIComponent(`Donation Pledge from ${donorData.name}`);
         const body = encodeURIComponent(
           `Dear Hope Revealed Team,\n\n` +
@@ -549,37 +644,61 @@
           `${donorData.name}`
         );
         
-        // Open email client
         window.location.href = `mailto:info@hoperevealedfoundation.org?subject=${subject}&body=${body}`;
       }
       
-      // Function to show payment modal
+      // Modal functions
+      const modal = document.getElementById('paymentModal');
+      
       function showPaymentModal() {
-        const modal = document.getElementById('paymentModal');
         if (modal) {
           modal.classList.add('active');
+          document.body.style.overflow = 'hidden';
         }
       }
       
-      window.closePaymentModal = function() {
-        const modal = document.getElementById('paymentModal');
+      function closePaymentModal() {
         if (modal) {
           modal.classList.remove('active');
+          document.body.style.overflow = '';
         }
-      };
+      }
+      
+      // Attach close functions to window
+      window.closePaymentModal = closePaymentModal;
+      
+      // Modal close buttons
+      const closeModalX = document.getElementById('closeModalX');
+      const closeModalBtn = document.getElementById('closeModalBtn');
+      const cancelModalBtn = document.getElementById('cancelModalBtn');
+      
+      if (closeModalX) closeModalX.addEventListener('click', closePaymentModal);
+      if (closeModalBtn) closeModalBtn.addEventListener('click', closePaymentModal);
+      if (cancelModalBtn) cancelModalBtn.addEventListener('click', closePaymentModal);
+      
+      // Close modal when clicking outside content
+      if (modal) {
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) {
+            closePaymentModal();
+          }
+        });
+      }
       
       // Copy number functionality
       document.querySelectorAll('.copy-btn').forEach(btn => {
         btn.addEventListener('click', function() {
-          const number = this.dataset.number;
-          navigator.clipboard.writeText(number).then(() => {
+          let number = this.dataset.number;
+          // Format number for display
+          const formattedNumber = '+' + number;
+          navigator.clipboard.writeText(formattedNumber).then(() => {
             const originalText = this.textContent;
             this.textContent = 'Copied!';
             setTimeout(() => {
               this.textContent = originalText;
             }, 2000);
           }).catch(() => {
-            alert('Press Ctrl+C to copy: ' + number);
+            alert('Press Ctrl+C to copy: ' + formattedNumber);
           });
         });
       });
@@ -621,7 +740,7 @@
           
           await new Promise(resolve => setTimeout(resolve, 500));
           
-          // Send email notification to organization
+          // Send email notification
           sendEmailNotification({
             name: donorName,
             email: donorEmail,
@@ -630,7 +749,7 @@
             isMonthly: isMonthly
           });
           
-          // Show payment modal with mobile money numbers
+          // Show smaller payment modal
           showPaymentModal();
           
           // Reset button state
@@ -644,16 +763,6 @@
             customAmountField.value = '';
           }
           selectedAmount = null;
-        });
-      }
-      
-      // Close modal when clicking outside
-      const modal = document.getElementById('paymentModal');
-      if (modal) {
-        modal.addEventListener('click', (e) => {
-          if (e.target === modal) {
-            closePaymentModal();
-          }
         });
       }
       
