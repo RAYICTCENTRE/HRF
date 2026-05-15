@@ -1,26 +1,194 @@
-<!-- index.html (Home Page) -->
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <meta name="description" content="Hope Revealed - Christian Community-Based Organization transforming communities in Kiryandongo and Oyam Districts, Uganda." />
   <title>Hope Revealed — Transforming Communities | Home</title>
   <link rel="stylesheet" href="styles.css" />
   <style>
-    /* Quick fix for any missing styles */
-    body { margin: 0; padding: 0; }
-    .wrap { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+    /* Additional homepage refinements that work with styles.css */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      margin: 2rem 0 4rem 0;
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 3rem;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-content h3 {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+      border-left: none;
+      padding-left: 0;
+      color: var(--green-dark);
+    }
+
+    .hero-content p {
+      margin-bottom: 1.8rem;
+      line-height: 1.6;
+    }
+
+    .badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--red), var(--red-dark));
+      color: white;
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .stats {
+      display: flex;
+      gap: 2rem;
+      margin-top: 1.5rem;
+      padding-top: 1rem;
+      border-top: 2px solid rgba(46,125,50,0.15);
+    }
+
+    .stats div {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text-light);
+    }
+
+    .stats span {
+      font-size: 1.8rem;
+      color: var(--red);
+      display: block;
+      font-weight: 800;
+      margin-bottom: 0.3rem;
+    }
+
+    .hero-image img {
+      width: 100%;
+      border-radius: 24px;
+      object-fit: cover;
+      height: 380px;
+      box-shadow: 0 20px 30px -10px rgba(0,0,0,0.2);
+      transition: var(--transition);
+    }
+
+    .hero-image img:hover {
+      transform: scale(1.02);
+    }
+
+    .impact-preview, .events {
+      margin: 4rem 0;
+    }
+
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.8rem;
+    }
+
+    .impact-card {
+      background: var(--card);
+      padding: 2rem;
+      border-radius: var(--radius);
+      text-align: center;
+      box-shadow: var(--shadow-md);
+      transition: var(--transition);
+    }
+
+    .impact-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .impact-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .impact-card h4 {
+      font-size: 1.3rem;
+      margin-bottom: 0.75rem;
+      color: var(--green-dark);
+    }
+
+    .events-list {
+      background: var(--card);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+    }
+
+    .event-item {
+      display: flex;
+      gap: 1.5rem;
+      padding: 1.5rem;
+      border-bottom: 1px solid #eee;
+      align-items: center;
+      transition: var(--transition);
+    }
+
+    .event-item:hover {
+      background: #fafaf5;
+      transform: translateX(5px);
+    }
+
+    .event-date {
+      background: linear-gradient(135deg, var(--red), var(--red-dark));
+      color: white;
+      text-align: center;
+      min-width: 70px;
+      padding: 0.8rem;
+      border-radius: 18px;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 2rem;
+      }
+      
+      .hero-image img {
+        height: 280px;
+      }
+      
+      .hero-content h3 {
+        font-size: 1.8rem;
+      }
+    }
+
+    @media (max-width: 550px) {
+      .stats {
+        justify-content: space-around;
+      }
+      
+      .stats span {
+        font-size: 1.4rem;
+      }
+      
+      .event-item {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="wrap">
     <header>
-      <a href="logo.jpeg" class="logo">
-        <div>HR</div> 
+      <a href="index.html" class="logo">
+        <!-- Fixed logo image display - now using img tag for logo.jpeg -->
+        <img src="logo.jpeg" alt="Hope Revealed Logo" style="height: 45px; width: auto; border-radius: 10px;">
         <span>Hope Revealed</span>
       </a>
-      <nav>
+      <nav id="mainNav">
         <a href="index.html" class="active">Home</a>
         <a href="about.html">About</a>
         <a href="programs.html">Programs</a>
@@ -28,7 +196,7 @@
         <a href="contact.html">Contact</a>
         <a href="donate.html" class="cta">Donate</a>
       </nav>
-      <button class="mobile-menu-btn" aria-label="Menu">☰</button>
+      <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu">☰</button>
     </header>
 
     <main>
@@ -45,9 +213,9 @@
             <a href="programs.html" class="secondary">Our Programs</a>
           </div>
           <div class="stats">
-            <div><span>2,500+</span><br>Lives touched</div>
-            <div><span>6</span><br>Active programs</div>
-            <div><span>12+</span><br>Communities</div>
+            <div><span>2,500+</span>Lives touched</div>
+            <div><span>6</span>Active programs</div>
+            <div><span>12+</span>Communities</div>
           </div>
         </div>
         <div class="hero-image">
@@ -107,6 +275,66 @@
       <div class="footer-bottom">© <span id="year"></span> Hope Revealed — All Rights Reserved</div>
     </footer>
   </div>
+  
+  <!-- Link to external script.js -->
   <script src="script.js"></script>
+  
+  <!-- Homepage specific enhancements -->
+  <script>
+    (function() {
+      // Set copyright year
+      const yearSpan = document.getElementById('year');
+      if (yearSpan && !yearSpan.textContent) {
+        yearSpan.textContent = new Date().getFullYear();
+      }
+      
+      // Mobile menu toggle
+      const menuBtn = document.getElementById('menuBtn');
+      const mainNav = document.getElementById('mainNav');
+      if (menuBtn && mainNav && !menuBtn.hasAttribute('data-home-listener')) {
+        menuBtn.setAttribute('data-home-listener', 'true');
+        menuBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          mainNav.classList.toggle('show');
+          const isExpanded = mainNav.classList.contains('show');
+          menuBtn.setAttribute('aria-expanded', isExpanded);
+          menuBtn.innerHTML = isExpanded ? '✕' : '☰';
+          document.body.style.overflow = isExpanded ? 'hidden' : '';
+        });
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+          if (mainNav.classList.contains('show') && !mainNav.contains(e.target) && !menuBtn.contains(e.target)) {
+            mainNav.classList.remove('show');
+            menuBtn.setAttribute('aria-expanded', 'false');
+            menuBtn.innerHTML = '☰';
+            document.body.style.overflow = '';
+          }
+        });
+      }
+      
+      // Handle logo image error fallback
+      const logoImg = document.querySelector('.logo img');
+      if (logoImg) {
+        logoImg.onerror = function() {
+          this.style.display = 'none';
+          const placeholder = document.createElement('div');
+          placeholder.textContent = 'HR';
+          placeholder.style.background = 'linear-gradient(135deg, var(--green), var(--green-light))';
+          placeholder.style.color = 'white';
+          placeholder.style.width = '45px';
+          placeholder.style.height = '45px';
+          placeholder.style.display = 'flex';
+          placeholder.style.alignItems = 'center';
+          placeholder.style.justifyContent = 'center';
+          placeholder.style.borderRadius = '12px';
+          placeholder.style.fontWeight = 'bold';
+          placeholder.style.fontSize = '1.3rem';
+          this.parentNode.insertBefore(placeholder, this);
+          this.remove();
+        };
+      }
+    })();
+  </script>
 </body>
 </html>
