@@ -291,7 +291,7 @@
 
     .payment-option {
       background: #f8f6f0;
-      padding: 0.8rem 1rem;
+      padding: 1rem;
       border-radius: 14px;
       margin-bottom: 0.7rem;
       display: flex;
@@ -326,11 +326,6 @@
       color: #c96f0d;
     }
 
-    .provider-badge.airtel {
-      background: #ffd9d9;
-      color: #c62828;
-    }
-
     .payment-number {
       font-family: monospace;
       font-size: 1rem;
@@ -338,7 +333,7 @@
       color: var(--green-dark);
       letter-spacing: 0.5px;
       background: white;
-      padding: 0.2rem 0.6rem;
+      padding: 0.3rem 0.8rem;
       border-radius: 20px;
     }
 
@@ -346,10 +341,10 @@
       background: var(--green);
       color: white;
       border: none;
-      padding: 0.3rem 0.9rem;
+      padding: 0.4rem 1rem;
       border-radius: 30px;
       cursor: pointer;
-      font-size: 0.7rem;
+      font-size: 0.75rem;
       transition: var(--transition);
     }
 
@@ -515,16 +510,16 @@
     </footer>
   </div>
 
-  <!-- Payment Modal - Smaller Size -->
+  <!-- Payment Modal - Only MTN Number -->
   <div id="paymentModal" class="payment-modal">
     <div class="payment-modal-content">
       <div class="payment-modal-header">
         <h3>💝 Complete Donation</h3>
         <button class="close-modal-x" id="closeModalX">&times;</button>
       </div>
-      <p>Send payment via Mobile Money to any of these numbers:</p>
+      <p>Send payment via Mobile Money to:</p>
       <div class="payment-options">
-        <!-- MTN Number 1 -->
+        <!-- Single MTN Number -->
         <div class="payment-option">
           <div class="payment-option-info">
             <strong>MTN Mobile Money</strong>
@@ -532,24 +527,6 @@
           </div>
           <span class="payment-number">+256 776 156 515</span>
           <button class="copy-btn" data-number="256776156515">Copy</button>
-        </div>
-        <!-- Airtel Number -->
-        <div class="payment-option">
-          <div class="payment-option-info">
-            <strong>Airtel Money</strong>
-            <span class="provider-badge airtel">Airtel Uganda</span>
-          </div>
-          <span class="payment-number">+256 786 033 088</span>
-          <button class="copy-btn" data-number="256786033088">Copy</button>
-        </div>
-        <!-- MTN Number 2 (starting with 070) - This is Airtel in Uganda, corrected -->
-        <div class="payment-option">
-          <div class="payment-option-info">
-            <strong>Airtel Money</strong>
-            <span class="provider-badge airtel">Airtel Uganda</span>
-          </div>
-          <span class="payment-number">+256 704 567 890</span>
-          <button class="copy-btn" data-number="256704567890">Copy</button>
         </div>
       </div>
       <p style="font-size: 0.75rem; color: #888; text-align: center; margin-top: 0.5rem;">After payment, our team will confirm within 24 hours. A receipt will be sent to your email.</p>
@@ -639,7 +616,7 @@
           `Phone: ${donorData.phone || 'Not provided'}\n` +
           `Amount: $${donorData.amount}\n` +
           `Monthly: ${donorData.isMonthly ? 'Yes' : 'No'}\n\n` +
-          `I will complete the payment using the provided mobile money numbers.\n\n` +
+          `I will complete the payment using MTN Mobile Money number +256 776 156 515.\n\n` +
           `God bless you.\n` +
           `${donorData.name}`
         );
@@ -689,7 +666,6 @@
       document.querySelectorAll('.copy-btn').forEach(btn => {
         btn.addEventListener('click', function() {
           let number = this.dataset.number;
-          // Format number for display
           const formattedNumber = '+' + number;
           navigator.clipboard.writeText(formattedNumber).then(() => {
             const originalText = this.textContent;
@@ -749,7 +725,7 @@
             isMonthly: isMonthly
           });
           
-          // Show smaller payment modal
+          // Show payment modal
           showPaymentModal();
           
           // Reset button state
