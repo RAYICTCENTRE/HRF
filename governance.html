@@ -1,12 +1,246 @@
-<!-- governance.html -->
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="Governance, leadership, and board structure of Hope Revealed. Transparency and accountability." />
+  <meta name="description" content="Governance and board structure of Hope Revealed. Transparency and accountability." />
   <title>Hope Revealed — Governance</title>
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Minimal inline styles to ensure proper layout without profile pics and removed elements */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: #fef9f0;
+      color: #1e2a2e;
+      line-height: 1.5;
+    }
+
+    .wrap {
+      max-width: 1280px;
+      margin: 0 auto;
+      background: white;
+      box-shadow: 0 0 30px rgba(0,0,0,0.03);
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 2rem;
+      background: #ffffff;
+      border-bottom: 1px solid #e9e0d0;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: #2c5f2d;
+    }
+
+    .logo div {
+      background: #2c5f2d;
+      color: white;
+      width: 42px;
+      height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      font-size: 1.6rem;
+      font-weight: bold;
+    }
+
+    nav {
+      display: flex;
+      gap: 1.8rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #2d3e2b;
+      font-weight: 500;
+    }
+
+    nav a.active {
+      color: #c96f0d;
+      border-bottom: 2px solid #c96f0d;
+      padding-bottom: 4px;
+    }
+
+    .cta {
+      background: #c96f0d;
+      color: white !important;
+      padding: 0.5rem 1.2rem;
+      border-radius: 40px;
+      transition: 0.2s;
+    }
+
+    .cta:hover {
+      background: #a35709;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+    }
+
+    main {
+      padding: 2rem 2rem 3rem;
+    }
+
+    .page-header {
+      text-align: center;
+      margin-bottom: 2.8rem;
+    }
+
+    .page-header h1 {
+      font-size: 2.5rem;
+      color: #2c5f2d;
+      margin-bottom: 0.5rem;
+    }
+
+    /* leadership section removed entirely but we will not show anything related to exec */
+    .leadership {
+      display: none;
+    }
+
+    /* board section only — new board members list */
+    .board {
+      background: #faf7f0;
+      border-radius: 28px;
+      padding: 2rem 2rem 2.2rem;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+      border: 1px solid #f0e5d4;
+    }
+
+    .board h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1.6rem;
+      color: #2c5f2d;
+      border-left: 5px solid #c96f0d;
+      padding-left: 1rem;
+    }
+
+    .board-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .board-list div {
+      background: white;
+      padding: 0.9rem 1.2rem;
+      border-radius: 60px;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #2c3e2b;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      border: 1px solid #e9dfcf;
+    }
+
+    .board-list strong {
+      color: #c96f0d;
+      margin-right: 8px;
+    }
+
+    /* financial transparency without download button */
+    .financial-transparency {
+      background: #eef4ea;
+      border-radius: 28px;
+      padding: 0.2rem;
+    }
+
+    .card {
+      background: white;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+    }
+
+    .card p {
+      font-size: 1.05rem;
+      color: #2d3e2b;
+    }
+
+    .secondary {
+      display: none; /* hide any download report link */
+    }
+
+    footer {
+      background: #1e2a1c;
+      color: #e9e0cf;
+      padding: 2rem 2rem 1rem;
+      border-radius: 24px 24px 0 0;
+      margin-top: 2rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-grid div strong {
+      color: #f9c270;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      border-top: 1px solid #3f533a;
+      padding-top: 1.5rem;
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 720px) {
+      nav {
+        display: none;
+      }
+      .mobile-menu-btn {
+        display: block;
+      }
+      header {
+        justify-content: space-between;
+      }
+      .board-list div {
+        border-radius: 24px;
+      }
+      main {
+        padding: 1.5rem;
+      }
+    }
+
+    /* responsive fallback for nav on small screens (basic) */
+    @media (max-width: 720px) {
+      nav.open {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        background: white;
+        padding: 1rem 0;
+        gap: 1rem;
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="wrap">
@@ -15,7 +249,7 @@
         <div>HR</div> 
         <span>Hope Revealed</span>
       </a>
-      <nav>
+      <nav id="mainNav">
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
         <a href="programs.html">Programs</a>
@@ -23,7 +257,7 @@
         <a href="contact.html">Contact</a>
         <a href="donate.html" class="cta">Donate</a>
       </nav>
-      <button class="mobile-menu-btn" aria-label="Menu">☰</button>
+      <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu">☰</button>
     </header>
 
     <main>
@@ -32,44 +266,26 @@
         <p>Committed to transparency, integrity, and community stewardship</p>
       </section>
 
-      <section class="leadership">
-        <h3>Executive Leadership</h3>
-        <div class="leaders-grid">
-          <div class="leader-card">
-            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Executive Director">
-            <h4>Rev. James Okello</h4>
-            <p>Executive Director</p>
-            <span>+256 776 156 515</span>
-          </div>
-          <div class="leader-card">
-            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Managing Director">
-            <h4>Grace Acheng</h4>
-            <p>Managing Director</p>
-            <span>+256 786 033 088</span>
-          </div>
-          <div class="leader-card">
-            <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Programs Director">
-            <h4>Peter Odama</h4>
-            <p>Director of Programs</p>
-            <span>pg@hoperevealed.org</span>
-          </div>
-        </div>
-      </section>
+      <!-- Executive Leadership section completely removed as requested -->
+      <!-- No leader cards, no names, no images, no contact details -->
 
+      <!-- Board Members section (replaces old board of advisors, with exact new members) -->
       <section class="board">
-        <h3>Board of Advisors</h3>
+        <h3>Board Members</h3>
         <div class="board-list">
-          <div><strong>Bishop Sarah Aol</strong> – Chairperson, Church of Uganda</div>
-          <div><strong>John Bosco Oryem</strong> – Legal Advisor, Community Advocate</div>
-          <div><strong>Dr. Mary Among</strong> – Health & Nutrition Specialist</div>
+          <div><strong>•</strong> Sunday Joel Ocibo</div>
+          <div><strong>•</strong> Opira Thomas</div>
+          <div><strong>•</strong> Apio Sofie</div>
+          <div><strong>•</strong> Aguma Ambrose</div>
         </div>
       </section>
 
+      <!-- Financial transparency without any download report link -->
       <section class="financial-transparency">
-        <h3>Financial Accountability</h3>
         <div class="card" style="background: white; padding: 2rem; border-radius: 20px;">
+          <h3 style="color:#2c5f2d; margin-bottom:1rem;">Financial Accountability</h3>
           <p>Hope Revealed adheres to strict financial oversight. Quarterly reports are shared with community stakeholders and donors. We are registered with the Uganda NGO Bureau.</p>
-          <a href="#" class="secondary" style="display:inline-block; margin-top:12px;">📄 Download Annual Report (PDF)</a>
+          <!-- removed download annual report link / button entirely -->
         </div>
       </section>
     </main>
@@ -84,6 +300,20 @@
       <div class="footer-bottom">© <span id="year"></span> Hope Revealed — All Rights Reserved</div>
     </footer>
   </div>
-  <script src="script.js"></script>
+  <script>
+    // dynamic year for footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+    
+    // simple mobile menu toggle (optional but adds usability)
+    const menuBtn = document.getElementById('menuBtn');
+    const nav = document.getElementById('mainNav');
+    if (menuBtn && nav) {
+      menuBtn.addEventListener('click', () => {
+        nav.classList.toggle('open');
+        const expanded = nav.classList.contains('open');
+        menuBtn.setAttribute('aria-expanded', expanded);
+      });
+    }
+  </script>
 </body>
 </html>
