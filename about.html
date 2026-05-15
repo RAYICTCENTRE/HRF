@@ -180,6 +180,14 @@
       text-align: center;
     }
 
+    /* Logo image styling */
+    .logo img {
+      height: 45px;
+      width: auto;
+      border-radius: 10px;
+      object-fit: contain;
+    }
+
     /* Responsive gallery fixes */
     @media (max-width: 780px) {
       .about-story {
@@ -206,7 +214,9 @@
 <div class="wrap">
   <header>
     <a href="index.html" class="logo">
-      <div>HR</div> <span>Hope Revealed</span>
+      <!-- Fixed logo image display - using img tag for logo.jpeg -->
+      <img src="logo.jpeg" alt="Hope Revealed Logo" style="height: 45px; width: auto; border-radius: 10px;">
+      <span>Hope Revealed</span>
     </a>
     <nav id="mainNav">
       <a href="index.html">Home</a>
@@ -378,7 +388,7 @@
       yearSpan.textContent = new Date().getFullYear();
     }
 
-    // Image error fallback
+    // Image error fallback for gallery images
     const allImgs = document.querySelectorAll('.slide img');
     allImgs.forEach(img => {
       img.onerror = function() {
@@ -388,6 +398,28 @@
         this.alt = "Image coming soon";
       };
     });
+    
+    // Handle logo image error fallback
+    const logoImg = document.querySelector('.logo img');
+    if (logoImg) {
+      logoImg.onerror = function() {
+        this.style.display = 'none';
+        const placeholder = document.createElement('div');
+        placeholder.textContent = 'HR';
+        placeholder.style.background = 'linear-gradient(135deg, var(--green), var(--green-light))';
+        placeholder.style.color = 'white';
+        placeholder.style.width = '45px';
+        placeholder.style.height = '45px';
+        placeholder.style.display = 'flex';
+        placeholder.style.alignItems = 'center';
+        placeholder.style.justifyContent = 'center';
+        placeholder.style.borderRadius = '12px';
+        placeholder.style.fontWeight = 'bold';
+        placeholder.style.fontSize = '1.3rem';
+        this.parentNode.insertBefore(placeholder, this);
+        this.remove();
+      };
+    }
   })();
 </script>
 </body>
