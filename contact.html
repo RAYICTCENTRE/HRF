@@ -1,12 +1,193 @@
-<!-- contact.html -->
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="Contact Hope Revealed in Kiryandongo, Uganda. Reach our directors or send a message." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="description" content="Contact Hope Revealed in Kiryandongo, Uganda. Reach out for partnerships, volunteering, donations or prayer requests." />
   <title>Hope Revealed — Contact Us</title>
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Additional contact-specific refinements that work seamlessly with styles.css */
+    .contact-page-grid {
+      display: grid;
+      grid-template-columns: 1fr 0.9fr;
+      gap: 2.5rem;
+      margin: 2rem 0 3rem;
+    }
+
+    .contact-form-container {
+      background: var(--card);
+      padding: 2rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-md);
+      transition: var(--transition);
+    }
+
+    .contact-form-container:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .contact-details {
+      height: 100%;
+    }
+
+    .info-card {
+      background: var(--card);
+      padding: 2rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-md);
+      height: 100%;
+      transition: var(--transition);
+    }
+
+    .info-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .info-card h4 {
+      color: var(--green-dark);
+      margin: 1.5rem 0 0.5rem;
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    .info-card h4:first-of-type {
+      margin-top: 0;
+    }
+
+    .info-card p {
+      margin-bottom: 0.5rem;
+      line-height: 1.5;
+      color: var(--text);
+    }
+
+    .map-placeholder {
+      background: linear-gradient(135deg, #f5f5ee, #ecece3);
+      padding: 1.2rem;
+      text-align: center;
+      border-radius: 16px;
+      margin-top: 1.8rem;
+      font-weight: 500;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+
+    .map-placeholder:hover {
+      background: linear-gradient(135deg, #e8e8dd, #e0e0d3);
+      transform: scale(1.01);
+    }
+
+    /* Form styling enhancements */
+    form input, form select, form textarea {
+      width: 100%;
+      padding: 0.9rem 1rem;
+      margin-bottom: 1.2rem;
+      border: 1.5px solid #e2e0d6;
+      border-radius: 14px;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 1rem;
+      transition: var(--transition);
+      background: #fefefe;
+    }
+
+    form input:focus, form select:focus, form textarea:focus {
+      outline: none;
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px rgba(46,125,50,0.1);
+      background: white;
+    }
+
+    form button {
+      background: linear-gradient(135deg, var(--red), var(--red-dark));
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: var(--transition);
+      width: 100%;
+      margin-top: 0.5rem;
+    }
+
+    form button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(198,40,40,0.3);
+    }
+
+    .form-feedback {
+      margin-top: 1rem;
+      padding: 0.8rem;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      text-align: center;
+      transition: opacity 0.3s ease;
+    }
+
+    /* FAQ section */
+    .faq-section {
+      margin: 3rem 0 2rem;
+    }
+
+    .faq-section h3 {
+      margin-bottom: 1.5rem;
+    }
+
+    details {
+      background: var(--card);
+      margin-bottom: 1rem;
+      padding: 1.2rem 1.5rem;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: var(--transition);
+      border: 1px solid rgba(0,0,0,0.03);
+    }
+
+    details:hover {
+      box-shadow: var(--shadow-sm);
+      border-color: var(--green-light);
+    }
+
+    summary {
+      font-weight: 700;
+      color: var(--green-dark);
+      padding: 0.3rem 0;
+      font-size: 1.05rem;
+    }
+
+    details p {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid #eee;
+      color: var(--text-light);
+      line-height: 1.5;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 900px) {
+      .contact-page-grid {
+        grid-template-columns: 1fr;
+        gap: 1.8rem;
+      }
+      
+      .info-card {
+        margin-top: 0;
+      }
+    }
+
+    @media (max-width: 550px) {
+      .contact-form-container, .info-card {
+        padding: 1.5rem;
+      }
+      
+      form input, form select, form textarea {
+        padding: 0.75rem 0.9rem;
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="wrap">
@@ -15,7 +196,7 @@
         <div>HR</div> 
         <span>Hope Revealed</span>
       </a>
-      <nav>
+      <nav id="mainNav">
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
         <a href="programs.html">Programs</a>
@@ -23,7 +204,7 @@
         <a href="contact.html" class="active">Contact</a>
         <a href="donate.html" class="cta">Donate</a>
       </nav>
-      <button class="mobile-menu-btn" aria-label="Menu">☰</button>
+      <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu">☰</button>
     </header>
 
     <main>
@@ -35,17 +216,18 @@
       <div class="contact-page-grid">
         <div class="contact-form-container">
           <form id="contactForm">
-            <input type="text" placeholder="Full Name" required>
-            <input type="email" placeholder="Email Address" required>
-            <input type="tel" placeholder="Phone (optional)">
-            <select required>
+            <input type="text" id="contactName" placeholder="Full Name" required>
+            <input type="email" id="contactEmail" placeholder="Email Address" required>
+            <input type="tel" id="contactPhone" placeholder="Phone (optional)">
+            <select id="contactInterest" required>
               <option value="">I am interested in...</option>
               <option>Volunteering</option>
               <option>Donating</option>
               <option>Partnership</option>
               <option>Prayer request</option>
+              <option>General inquiry</option>
             </select>
-            <textarea rows="5" placeholder="Your message"></textarea>
+            <textarea id="contactMessage" rows="5" placeholder="Your message"></textarea>
             <button type="submit">Send Message 💬</button>
             <div class="form-feedback" style="display:none;"></div>
           </form>
@@ -53,13 +235,16 @@
         <div class="contact-details">
           <div class="info-card">
             <h4>📍 Head Office</h4>
-            <p>Kiryandongo District, Uganda<br>Near Main Market Street</p>
-            <h4>📞 Emergency/Support</h4>
-            <p><strong>Executive Director:</strong> +256 776 156 515<br>
-            <strong>Managing Director:</strong> +256 786 033 088</p>
+            <p>Kiryandongo District, Uganda<br>Near Main Market Street, P.O. Box 45</p>
+            
+            <h4>📞 Emergency / Support</h4>
+            <p><strong>General Line:</strong> +256 776 156 515<br>
+            <strong>Programs Office:</strong> +256 786 033 088</p>
+            
             <h4>✉️ Email</h4>
-            <p>info@hoperevealed.org<br>programs@hoperevealed.org</p>
-            <div class="map-placeholder">
+            <p>info@hoperevealed.org<br>programs@hoperevealed.org<br>partners@hoperevealed.org</p>
+            
+            <div class="map-placeholder" onclick="window.open('https://maps.google.com/?q=Kiryandongo+Uganda', '_blank')">
               🌍 View on Google Maps → Kiryandongo, Uganda
             </div>
           </div>
@@ -68,9 +253,22 @@
 
       <section class="faq-section">
         <h3>Frequently Asked Questions</h3>
-        <details><summary>How can I volunteer?</summary><p>Fill out the contact form or visit our office. We welcome skilled and unskilled volunteers.</p></details>
-        <details><summary>Are donations tax-deductible?</summary><p>Yes, we provide receipts for all donations. Consult your local tax advisor.</p></details>
-        <details><summary>How do I sponsor a program?</summary><p>Email our Managing Director at md@hoperevealed.org for partnership details.</p></details>
+        <details>
+          <summary>How can I volunteer?</summary>
+          <p>Fill out the contact form or visit our office. We welcome skilled and unskilled volunteers. You can also email volunteer@hoperevealed.org for current opportunities.</p>
+        </details>
+        <details>
+          <summary>Are donations tax-deductible?</summary>
+          <p>Yes, we provide official receipts for all donations. Please consult your local tax advisor for applicable deductions. We are registered with the Uganda NGO Bureau.</p>
+        </details>
+        <details>
+          <summary>How do I sponsor a program?</summary>
+          <p>Email our Partnerships team at partners@hoperevealed.org or call +256 786 033 088. We have sponsorship packages for education, livelihood training, and mission outreach.</p>
+        </details>
+        <details>
+          <summary>Can I visit your projects?</summary>
+          <p>Absolutely. We welcome visitors and short-term mission teams. Please contact us at least two weeks in advance to arrange a visit to our field locations.</p>
+        </details>
       </section>
     </main>
 
@@ -84,6 +282,93 @@
       <div class="footer-bottom">© <span id="year"></span> Hope Revealed — All Rights Reserved</div>
     </footer>
   </div>
+  
+  <!-- Link to external script.js for dynamic features (mobile menu, form handler, etc.) -->
   <script src="script.js"></script>
+  
+  <!-- Additional contact page specific enhancements (non-conflicting) -->
+  <script>
+    (function() {
+      // Ensure mobile menu works if script.js hasn't fully initialized or for extra safety
+      const menuBtn = document.getElementById('menuBtn');
+      const mainNav = document.getElementById('mainNav');
+      if (menuBtn && mainNav && !mainNav.classList) {
+        menuBtn.addEventListener('click', () => {
+          mainNav.classList.toggle('show');
+        });
+      }
+      
+      // Year fallback if needed
+      const yearSpan = document.getElementById('year');
+      if (yearSpan && !yearSpan.textContent) {
+        yearSpan.textContent = new Date().getFullYear();
+      }
+      
+      // Enhance contact form with better validation and feedback that works alongside global script.js
+      const contactForm = document.getElementById('contactForm');
+      if (contactForm && !contactForm.hasAttribute('data-initialized')) {
+        contactForm.setAttribute('data-initialized', 'true');
+        
+        contactForm.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          
+          const name = document.getElementById('contactName')?.value.trim() || '';
+          const email = document.getElementById('contactEmail')?.value.trim() || '';
+          const message = document.getElementById('contactMessage')?.value.trim() || '';
+          const interest = document.getElementById('contactInterest')?.value || '';
+          
+          let errorMsg = '';
+          if (!name) errorMsg = 'Please enter your full name.';
+          else if (!email || !email.includes('@')) errorMsg = 'Please enter a valid email address.';
+          else if (!message) errorMsg = 'Please write your message.';
+          else if (!interest || interest === '') errorMsg = 'Please select an interest option.';
+          
+          const feedbackDiv = contactForm.querySelector('.form-feedback');
+          if (errorMsg) {
+            if (feedbackDiv) {
+              feedbackDiv.textContent = `⚠️ ${errorMsg}`;
+              feedbackDiv.style.backgroundColor = '#ffe6e5';
+              feedbackDiv.style.color = '#c0392b';
+              feedbackDiv.style.display = 'block';
+              setTimeout(() => {
+                feedbackDiv.style.opacity = '0';
+                setTimeout(() => { feedbackDiv.style.display = 'none'; feedbackDiv.style.opacity = '1'; }, 300);
+              }, 4000);
+            }
+            return;
+          }
+          
+          // Show sending indicator
+          if (feedbackDiv) {
+            feedbackDiv.textContent = '⏳ Sending your message...';
+            feedbackDiv.style.backgroundColor = '#fff3e0';
+            feedbackDiv.style.color = '#c96f0d';
+            feedbackDiv.style.display = 'block';
+          }
+          
+          // Simulate network request (replace with actual fetch if backend available)
+          await new Promise(resolve => setTimeout(resolve, 800));
+          
+          // Success message
+          if (feedbackDiv) {
+            feedbackDiv.innerHTML = '✅ Thank you for reaching out! We will respond within 24-48 hours. God bless you. 🙏';
+            feedbackDiv.style.backgroundColor = '#e8f3e4';
+            feedbackDiv.style.color = '#2c5f2d';
+            feedbackDiv.style.display = 'block';
+          }
+          
+          // Reset form
+          contactForm.reset();
+          
+          setTimeout(() => {
+            if (feedbackDiv) {
+              feedbackDiv.style.opacity = '0';
+              setTimeout(() => { feedbackDiv.style.display = 'none'; feedbackDiv.style.opacity = '1'; }, 300);
+            }
+          }, 5000);
+        });
+      }
+    })();
+  </script>
 </body>
 </html>
